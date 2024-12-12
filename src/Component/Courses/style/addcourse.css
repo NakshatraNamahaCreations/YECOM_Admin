@@ -1,0 +1,248 @@
+.addCourseMain-0-1-55 {
+  width: 100%;
+  height: fit-content;
+  border-top: 1px solid #e4e6e8;
+  border-radius: 24px;
+  background-color: rgba(255, 255, 255);
+}
+.css-1h51icj-MuiAutocomplete-root
+  .MuiOutlinedInput-root
+  .MuiAutocomplete-input {
+  padding: 4.5px 4px 4.5px 5px !important;
+  /* width: "100%"; */
+}
+
+.MuiAutocomplete-hasPopupIcon.css-1h51icj-MuiAutocomplete-root
+  .MuiAutocomplete-inputRoot {
+  border-radius: 16px !important;
+}
+.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
+  /* width: 210% !important; */
+}
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+  font-size: 16px !important;
+}
+.footerNavContainer-0-1-444 {
+  /* right: 0px; */
+  right: 10px;
+  left: 242px;
+  border-top: 1px solid rgb(247, 247, 247);
+  border-right: 1px solid rgb(247, 247, 247);
+  border-left: 1px solid rgb(247, 247, 247);
+  border-image: initial;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  z-index: 10;
+  position: fixed;
+  background: rgb(255, 255, 255);
+  box-shadow: rgba(196, 203, 214, 0.25) 0px -4px 4px;
+  transition: width 0.4s ease 0s;
+  margin-right: 24px;
+  border-bottom: none;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+/* .secondary-d22-0-1-460 {
+  color: rgb(0, 173, 231);
+  border: 1px solid rgb(0, 173, 231);
+} */
+/* .button-0-1-98 {
+  color: rgb(255, 255, 255);
+  border: 1px solid transparent;
+  display: inline-flex;
+  padding: 12px 20px;
+  font-size: 16px;
+  transition: transform 0.2s ease 0s;
+  align-items: center;
+  font-weight: 600;
+  line-height: 24px;
+  border-radius: 16px;
+  justify-content: center; */
+/* background-color: rgb(0, 173, 231); */
+/* } */
+.course-lable-title {
+  color: #0d6efd;
+  /* font-weight: 600; */
+  font-size: 12px;
+}
+
+/* .............................ADD MODULES CSS BELOW HERE...............................*/
+.root-0-1-1416.root-0-1-1416 {
+  /* top: 30px; */
+  width: fit-content;
+  border: 1px solid #e5e5e5;
+  /* display: flex; */
+  padding: 14px;
+  /* position: sticky; */
+  /* flex-wrap: nowrap;
+  max-height: 100%; */
+  margin-left: 40px;
+  border-radius: 8px;
+  /* flex-direction: column; */
+}
+.text1-0-1-1417.text1-0-1-1417 {
+  color: #0a1629;
+  font-size: 24px;
+  /* font-family: "Nunito Sans"; */
+  font-weight: 700;
+  line-height: 24px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.addContentList-0-1-1418.addContentList-0-1-1418 {
+  overflow: auto;
+  flex-grow: 1;
+  flex-basis: auto;
+  flex-shrink: 1;
+}
+.tooltipWrapper-0-1-1200 {
+  display: flex;
+  position: relative;
+}
+.addContentListItem-0-1-1419.addContentListItem-0-1-1419 {
+  padding: 10px 10px !important;
+}
+.addContentListItem-0-1-1419.addContentListItem-0-1-1419:hover {
+  background-color: #f5f5f5 !important;
+}
+.root-0-1-1471.root-0-1-1471 {
+  width: 100%;
+  border: 0px;
+  cursor: pointer;
+  margin: 0px;
+  display: flex;
+  padding: 0px;
+  flex-wrap: nowrap;
+  background: transparent;
+  text-align: left;
+  align-items: center;
+}
+.iconCont-0-1-1472.iconCont-0-1-1472 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconCont-d122-0-1-2577.iconCont-d122-0-1-2577 > * {
+  margin: 2px;
+}
+.iconCont-0-1-1472.iconCont-0-1-1472 > * {
+  width: 20px;
+  height: 20px;
+}
+.text-d123-0-1-2578.text-d123-0-1-2578 {
+  font-size: 18px;
+  line-height: 26px;
+}
+.text-0-1-1473.text-0-1-1473 {
+  color: rgb(125, 133, 146);
+  /* font-family: "Nunito Sans"; */
+  font-weight: 600;
+  padding-left: 8px;
+}
+.courseOverviewSection-0-1-1127 {
+  /* width: 55%; */
+}
+.courseOverviewdata-0-1-1128 {
+  padding: 0 0 0 32px;
+  /* max-width: 80%; */
+  margin-top: 10px;
+}
+.courseOverviewLabel-0-1-1130 {
+  gap: 9px;
+  color: rgba(10, 22, 41);
+  width: 125%;
+  display: flex;
+  font-size: 16px;
+  align-items: center;
+  font-weight: bold;
+  line-height: 24px;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.courseOverviewDesc-0-1-1131 {
+  color: rgba(125, 133, 146);
+  font-size: 14px;
+  word-wrap: break-word;
+  margin-top: 4px;
+  text-align: left;
+}
+.linebreak-0-1-1126 {
+  color: #e4e6e8;
+  /* width: 80%; */
+  border-top: 1px dashed #e4e6e8;
+  margin-top: 10px;
+  margin-left: 32px;
+}
+.description-0-1-1132 {
+  line-height: initial;
+  white-space: pre-wrap;
+}
+.overviewFlex-0-1-1129 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.content-0-1-1436.content-0-1-1436 {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+.flex1-0-1-1407 {
+  flex: 1 1 0px;
+  min-width: 0px;
+  flex-basis: 0px;
+}
+.icon-0-1-1437.icon-0-1-1437 {
+  position: relative;
+  object-fit: cover;
+}
+.icon-d309-0-1-3419.icon-d309-0-1-3419 {
+  height: 56px;
+  width: 70px;
+}
+.icon-0-1-1437.icon-0-1-1437 > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.overrides-0-1-1404 * {
+  box-sizing: border-box;
+}
+.videoPlayIcon-0-1-1443.videoPlayIcon-0-1-1443 {
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: auto;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.rightContentCont-d310-0-1-3420.rightContentCont-d310-0-1-3420 {
+  padding-left: 26.67px;
+}
+.heading-d311-0-1-3421.heading-d311-0-1-3421 {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 30px;
+}
+.heading-0-1-1439.heading-0-1-1439 {
+  color: rgb(10, 22, 41);
+  /* font-family: "Nunito Sans"; */
+  margin-bottom: 4px;
+}
+.subHeading-d312-0-1-3422.subHeading-d312-0-1-3422 {
+  font-size: 16px;
+  line-height: 21.82px;
+  color: rgb(125, 133, 146);
+}
+.subHeading-0-1-1440.subHeading-0-1-1440 {
+  /* font-family: "Nunito Sans"; */
+  font-weight: 400;
+}
+.moduleTable-Details {
+  width: 125px;
+}
+.css-1atslg0-MuiTypography-root {
+  height: 67vh;
+}

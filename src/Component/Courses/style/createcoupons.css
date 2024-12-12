@@ -1,0 +1,151 @@
+.addCourseMain-0-1-55 {
+  width: 100%;
+  /* height: auto; */
+  border-top: 1px solid #e4e6e8;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255);
+}
+.css-1h51icj-MuiAutocomplete-root
+  .MuiOutlinedInput-root
+  .MuiAutocomplete-input {
+  padding: 4.5px 4px 4.5px 5px !important;
+  /* width: "100%"; */
+}
+
+.MuiAutocomplete-hasPopupIcon.css-1h51icj-MuiAutocomplete-root
+  .MuiAutocomplete-inputRoot {
+  border-radius: 16px !important;
+}
+.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
+  /* width: 210% !important; */
+}
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root {
+  font-size: 16px !important;
+}
+.footerNavContainer-0-1-444 {
+  /* right: 0px; */
+  right: 10px;
+  left: 242px;
+  border-top: 1px solid rgb(247, 247, 247);
+  border-right: 1px solid rgb(247, 247, 247);
+  border-left: 1px solid rgb(247, 247, 247);
+  border-image: initial;
+  bottom: 0px;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  z-index: 10;
+  position: fixed;
+  background: rgb(255, 255, 255);
+  box-shadow: rgba(196, 203, 214, 0.25) 0px -4px 4px;
+  transition: width 0.4s ease 0s;
+  margin-right: 24px;
+  border-bottom: none;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+}
+.cSOvUT {
+  /* width: 100%; */
+  /* min-height: 7.2rem; */
+  padding: 1.6rem;
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.12);
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 29px;
+}
+.cQTWuf {
+  min-width: 15%;
+}
+/* .secondary-d22-0-1-460 {
+    color: rgb(0, 173, 231);
+    border: 1px solid rgb(0, 173, 231);
+  } */
+/* .button-0-1-98 {
+    color: rgb(255, 255, 255);
+    border: 1px solid transparent;
+    display: inline-flex;
+    padding: 12px 20px;
+    font-size: 16px;
+    transition: transform 0.2s ease 0s;
+    align-items: center;
+    font-weight: 600;
+    line-height: 24px;
+    border-radius: 16px;
+    justify-content: center; */
+/* background-color: rgb(0, 173, 231); */
+/* } */
+.couponCourseCard_courseItemContainer__2-TnK {
+  padding: 1.6rem 3.2rem;
+  border-top: 1px solid #dbdbdb;
+  display: flex;
+}
+.couponCourseCard_courseImage__2ntZ_ {
+  width: 120px;
+  height: 90px;
+}
+.couponCourseCard_couponCourse__3fJhE {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.couponCourseCard_courseContent__1P3CJ {
+  margin-left: 24px;
+}
+.couponCourseCard_courseName__2-xWb {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: rgba(0, 0, 0, 0.87);
+}
+.couponCourseCard_createdByName__2O01k {
+  font-size: 14px;
+  line-height: 17px;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.6);
+}
+.couponCourseCard_priceDetails__34_y_ {
+  display: flex;
+  margin-top: 1rem;
+}
+.couponCourseCard_finalPrice__FGjk2,
+.couponCourseCard_price__3cQVD {
+  font-size: 14px;
+  line-height: 17px;
+  display: flex;
+  align-items: center;
+  mix-blend-mode: normal;
+}
+.couponCourseCard_price__3cQVD {
+  margin-left: 16px;
+  -webkit-text-decoration-line: line-through;
+  text-decoration-line: line-through;
+  color: rgba(0, 0, 0, 0.6);
+}
+.couponCourseCard_finalPrice__FGjk2 {
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+}
+.couponCourseCard_prompt__1yTks {
+  margin-left: 16px;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  display: flex;
+  align-items: center;
+  color: #ff4058;
+}
+.ui.checkbox {
+  position: relative;
+  display: inline-block;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  outline: 0;
+  vertical-align: initial;
+  font-style: normal;
+  min-height: 17px;
+  font-size: 1rem;
+  line-height: 17px;
+  min-width: 17px;
+}

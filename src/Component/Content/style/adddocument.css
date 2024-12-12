@@ -1,0 +1,230 @@
+.bodyContainer-0-1-281 {
+  border: none !important;
+  height: fit-content;
+  display: flex;
+  /* padding: 2rem; */
+  /* margin-top: 10px; */
+  border-radius: 10px !important;
+  flex-direction: row;
+  justify-content: space-between;
+  /* background-color: white !important; */
+}
+.listContainer-0-1-295 {
+  width: 75%;
+  max-width: 70%;
+  min-width: 70%;
+}
+.heading-0-1-294 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.container-0-1-369 {
+  /* width: 100%;
+  height: 90%;
+  overflow-y: auto; */
+  margin-bottom: 100px;
+}
+.root-d105-0-1-723.root-d105-0-1-723 {
+  padding: 12px 6.67px;
+}
+.root-0-1-372.root-0-1-372 {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  background-color: white;
+  margin-bottom: 13px;
+  border-radius: 13px;
+}
+.listItem-0-1-370 {
+  width: 97%;
+  cursor: pointer;
+  padding-top: 14px !important;
+  border-bottom: 1px solid #e4e6e8;
+  padding-bottom: 11px !important;
+}
+.content-0-1-373.content-0-1-373 {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+.flex1-0-1-385 {
+  flex: 1 1 0px;
+  min-width: 0px;
+}
+.icon-d106-0-1-724.icon-d106-0-1-724 {
+  height: 56px;
+  width: 70px;
+}
+.icon-0-1-374.icon-0-1-374 {
+  position: relative;
+  object-fit: cover;
+}
+.icon-0-1-374.icon-0-1-374 > * {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.rightContentCont-d107-0-1-725.rightContentCont-d107-0-1-725 {
+  padding-left: 15.67px;
+}
+.heading-d108-0-1-726.heading-d108-0-1-726 {
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 30px;
+}
+.heading-0-1-376.heading-0-1-376 {
+  color: rgb(10, 22, 41);
+  /* font-family: "Nunito Sans"; */
+  margin-bottom: 4px;
+}
+.subHeading-0-1-377.subHeading-0-1-377 {
+  /* font-family: "Nunito Sans"; */
+  /* font-weight: 600; */
+}
+.others-d110-0-1-728.others-d110-0-1-728 {
+  margin-top: 6px;
+  padding-left: 26.67px;
+}
+.others-0-1-378.others-0-1-378 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.blankStyle {
+  cursor: pointer;
+  visibility: hidden;
+  width: 0.1px;
+  height: 0.1px;
+}
+
+/*  */
+
+.root-0-1-299.root-0-1-299 {
+  top: 30px;
+  width: 350px;
+  border: 1px solid #e5e5e5;
+  display: flex;
+  padding: 24px 14px;
+  position: sticky;
+  flex-wrap: nowrap;
+  max-height: 45%;
+  margin-left: 40px;
+  border-radius: 24px;
+  flex-direction: column;
+}
+.text1-0-1-300.text1-0-1-300 {
+  color: #0a1629;
+  font-size: 16px;
+  /* font-family: "Nunito Sans"; */
+  font-weight: 700;
+  line-height: 24px;
+  margin-left: 10px;
+  margin-bottom: calc(32px - 10px);
+}
+.tooltipWrapper-0-1-322 {
+  display: flex;
+  position: relative;
+}
+.addContentListItem-0-1-302.addContentListItem-0-1-302 {
+  padding: 10px 10px;
+}
+.root-0-1-305.root-0-1-305 {
+  width: 100%;
+  border: 0px;
+  cursor: pointer;
+  margin: 0px;
+  display: flex;
+  padding: 0px;
+  flex-wrap: nowrap;
+  background: transparent;
+  text-align: left;
+  align-items: center;
+}
+.iconCont-0-1-306.iconCont-0-1-306 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconCont-d60-0-1-717.iconCont-d60-0-1-717 > * {
+  margin: 2px;
+}
+.iconCont-0-1-306.iconCont-0-1-306 > * {
+  width: 20px;
+  height: 20px;
+}
+.text-d61-0-1-718.text-d61-0-1-718 {
+  font-size: 18px;
+  line-height: 26px;
+}
+.uploadItem-0-1-648 {
+  width: 100%;
+  /* height: 20%; */
+  display: flex;
+  padding: 9px 0px;
+  align-items: center;
+  border-bottom: 1px solid rgb(216, 224, 240);
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.uploadImg-0-1-650 {
+  width: 15%;
+}
+.uploadText-d39-0-1-996 {
+  margin-right: 0px;
+}
+.uploadText-0-1-649 {
+  width: 300px;
+}
+.input-0-1-685 {
+  width: 100%;
+  border: 1px solid rgb(216, 224, 240);
+  outline: none;
+  padding: 12px 12px 12px 16px;
+  font-size: 16px;
+  /* font-family: "Nunito Sans"; */
+  /* font-weight: 600; */
+  line-height: 24px;
+  border-radius: 16px;
+}
+.others-0-1-629.others-0-1-629 {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.popupContainer-0-1-647 {
+  gap: 1px;
+  top: 25px;
+  right: 0px;
+  width: 213px;
+  border: 1px solid rgba(216, 224, 240);
+  display: flex;
+  z-index: 8;
+  overflow: hidden;
+  position: absolute;
+  box-shadow: 0px 2px 4px rgba(40, 41, 61, 0.04),
+    0px 8px 16px rgba(96, 97, 112, 0.16);
+  border-radius: 14px;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255);
+}
+.listItemContainer-0-1-648 {
+  color: rgba(125, 133, 146);
+  cursor: pointer;
+  display: flex;
+  padding: 8px 8px 8px 12px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+.iconImage-0-1-649 {
+  margin-right: 8px;
+}
+.listItemContainer-0-1-648:hover {
+  color: rgba(10, 22, 41);
+  background-color: rgba(244, 244, 244);
+}
+/* ..............................AddVideo Component Css here........................ */
+.ytp-large-play-button {
+  display: none !important;
+}

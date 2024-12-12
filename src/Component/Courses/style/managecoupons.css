@@ -1,0 +1,327 @@
+.Banner__Main__Left__Content__ImageSection {
+  padding: 16px;
+  margin-top: 24px;
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.Banner__Main__Left__Content__ImageSection--Top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.Banner__Main__Left__Content__ImageSection--Top--Label {
+  cursor: default;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+  color: #000;
+  mix-blend-mode: normal;
+  opacity: 0.87;
+}
+.Banner__Main__Left__Content__ImageSection--Top--Remove {
+  outline: none;
+  cursor: pointer;
+  background-color: initial;
+  border: none;
+  display: flex;
+  align-items: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+  color: #ff4058;
+  mix-blend-mode: normal;
+}
+.Banner__Main__Left__Content__ImageSection--Top--Remove img {
+  margin-right: 10px;
+}
+.UploadedImageArea {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  position: relative;
+  border-radius: 4px;
+  cursor: default;
+}
+.Banner__Main__Left__Content__ImageSection--Image {
+  border-radius: 4px;
+  margin-top: 12px;
+  width: 220px;
+  height: 120px;
+}
+.UploadedImageArea__Change {
+  visibility: hidden;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  align-items: center;
+}
+.UploadedImageArea__Change--Button {
+  opacity: 1;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 8px 24px;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  border-radius: 120px;
+  cursor: pointer;
+}
+.UploadedImageArea__Change--Button img {
+  margin-right: 8px;
+}
+.Banner__Main__Left__Content__ImageSection--Select {
+  margin-top: 24px;
+}
+.Banner__Main__Left__Content__ImageSection--Select--Note {
+  cursor: default;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 150%;
+  color: #000;
+  mix-blend-mode: normal;
+  opacity: 0.87;
+}
+.Banner__Main__Left__Content__ImageSection--Select--Action {
+  cursor: default;
+  margin-top: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid #dbdbdb; */
+  padding: 12px;
+}
+.Banner__Main__Left__Content__ImageSection--Select--Action--Selected {
+  cursor: default;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: rgba(0, 0, 0, 0.87);
+  font-weight: 500;
+}
+.Banner__Main__Left__Content__ImageSection--Select--Action--Change {
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: right;
+  color: #009ae0;
+}
+.CouponListCard_couponListCard__SX0FT {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  grid-template-rows: 2;
+  grid-gap: 1.6rem;
+  gap: 1.6rem;
+  background-color: #fff;
+  margin: 10px 0;
+  padding: 1.6rem;
+}
+.CouponListCard_couponInfo__10kC8 {
+  text-align: center;
+  border-right: 1px solid #e5e5e5;
+  padding-right: 2.4rem;
+  padding-left: 0.8rem;
+}
+.CouponListCard_couponInfo__10kC8 h2 {
+  font-weight: 600;
+  font-size: 1.6rem;
+  margin-bottom: 0.8rem;
+  line-height: 1.9rem;
+}
+.jgIAfD {
+  min-width: 10rem;
+  display: block;
+  border: 0.1rem dashed rgb(245, 166, 35);
+  background: rgba(245, 166, 35, 0.05);
+  /* padding: 0.8rem 2.4rem; */
+  font-size: 1.2rem;
+  border-radius: 0.2rem;
+  word-break: break-all;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.16rem;
+  color: rgba(0, 0, 0, 0.87);
+}
+.cp-flex.j-between {
+  justify-content: space-between;
+}
+.cp-flex {
+  display: flex !important;
+}
+.CouponListCard_couponName__3d9xG {
+  font-size: 18px;
+  font-weight: 500;
+  /* margin-bottom: 0.8rem; */
+  line-height: 1.9rem;
+}
+.fontSmall {
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.fontGray {
+  color: #888a8d;
+  margin-left: 5px;
+}
+.circle:before {
+  content: " \25CF";
+  font-size: 1rem;
+  color: #eee;
+}
+.textPrimary {
+  color: #009ae0;
+}
+.CouponListCard_capitalizeText___Tgcj {
+  text-transform: capitalize;
+  margin-left: 8px;
+}
+
+.dbJHrw {
+  min-width: 5.2rem;
+  min-height: 1.6rem;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.2rem;
+  text-transform: uppercase;
+  border-radius: 0.2rem;
+  padding: 5px 5px;
+  color: rgb(255, 255, 255);
+  background: rgb(82, 176, 98);
+}
+.an-dr-menu a {
+  text-decoration: none;
+  color: black;
+}
+.ui.dropdown > .text {
+  display: inline-block;
+  transition: none;
+}
+i.icon {
+  display: inline-block;
+  opacity: 1;
+  margin: 0 0.25rem 0 0;
+  width: 1.18em;
+  height: 1em;
+  font-family: Icons;
+  font-style: normal;
+  font-weight: 400;
+  text-decoration: inherit;
+  text-align: center;
+  speak: none;
+  font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.ui.dropdown .menu {
+  cursor: auto;
+  position: absolute;
+  /* display: none; */
+  outline: 0;
+  top: 100%;
+  min-width: -webkit-max-content;
+  min-width: max-content;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  font-size: 1em;
+  text-shadow: none;
+  text-align: left;
+  box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  border-radius: 0.28571429rem;
+  transition: opacity 0.1s ease;
+  z-index: 11;
+  will-change: transform, opacity;
+}
+
+.CouponListCard_threeDots__1ExY8:hover .menu {
+  display: block !important;
+  visibility: visible !important;
+}
+
+.visible.transition {
+  display: block !important;
+  visibility: visible !important;
+}
+.CouponListCard_threeDotsMenu__18VGG {
+  left: auto !important;
+  right: 0 !important;
+}
+.transition {
+  animation-fill-mode: both;
+}
+.ui.dropdown .menu > .item:first-child {
+  border-top-width: 0;
+}
+.ui.dropdown .menu > .item {
+  position: relative;
+  cursor: pointer;
+  display: block;
+  height: auto;
+  text-align: left;
+  border: none;
+  line-height: 1em;
+  color: rgba(0, 0, 0, 0.87);
+  padding: 5px 6px;
+  /* padding: 0.78571429rem 1.14285714rem !important; */
+  font-size: 1rem;
+  text-transform: none;
+  font-weight: 400;
+  box-shadow: none;
+  -webkit-touch-callout: none;
+}
+.CouponListCard_couponMenuListItem__2N4JD {
+  padding: 4px 6px;
+}
+.fontMedium {
+  font-size: 15px;
+  line-height: 17px;
+}
+.delGVt {
+  display: inline-block;
+  padding: 0.2rem 0.6rem 0.2rem 0px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.gJUBjn {
+  font-size: 1.6rem;
+  margin-right: 8px;
+  margin-bottom: -1px;
+}
+.delGVt span {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+}
+.CouponListCard_divider__2I5BA {
+  font-size: 1.2rem;
+  color: #e5e5e5;
+  padding: 0 16px;
+}
+.dQcZQY {
+  display: inline-block;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-style: normal;
+  font-weight: 500;
+  outline: none;
+  line-height: 1.9rem;
+  color: rgb(0, 154, 224);
+  /* font-size: 1.2rem; */
+}

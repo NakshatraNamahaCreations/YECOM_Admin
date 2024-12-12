@@ -1,0 +1,374 @@
+.courseOverviewContentContainer-0-1-662 {
+  gap: 20px;
+  display: flex;
+  flex-direction: row;
+}
+.courseOverviewMain-0-1-631 {
+  width: 77.5%;
+  height: auto;
+  display: flex;
+  border-top: 1px solid #e4e6e8;
+  align-items: flex-start;
+  border-radius: 24px;
+  margin-bottom: 48px;
+  padding-bottom: 100px;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255);
+}
+.courseOverviewSection-0-1-634 {
+  width: 55%;
+}
+.courseOverviewdata-0-1-635 {
+  padding: 0 0 0 32px;
+  max-width: 80%;
+  margin-top: 24px;
+}
+.courseOverviewDesc-0-1-638 {
+  color: rgba(125, 133, 146);
+  font-size: 14px;
+  word-wrap: break-word;
+  margin-top: 4px;
+  text-align: left;
+}
+.linebreak-0-1-633 {
+  color: #e4e6e8;
+  width: 80%;
+  border-top: 1px dashed #e4e6e8;
+  margin-top: 24px;
+  margin-left: 32px;
+}
+.courseOverviewdata-0-1-635 {
+  padding: 0 0 0 32px;
+  max-width: 80%;
+  margin-top: 24px;
+}
+.overviewFlex-0-1-636 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.courseOverviewLabel-0-1-637 {
+  gap: 9px;
+  color: rgba(10, 22, 41);
+  width: 125%;
+  display: flex;
+  font-size: 16px;
+  align-items: center;
+  font-weight: bold;
+  line-height: 24px;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.courseOverviewSymbol-0-1-640 {
+  color: rgba(10, 22, 41);
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 26px;
+  margin-right: 16px;
+}
+.courseOverviewdataInstalment-0-1-749 {
+  padding: 0 0 0 31px;
+}
+.courseOverviewSide-0-1-645 {
+  padding: 32px;
+}
+.courseImage-0-1-667 {
+  position: relative;
+}
+.courseOverviewImg-0-1-646 {
+  width: 21vw;
+  height: 225px;
+  border-radius: 14px;
+  margin-bottom: 24px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.contentLeft-0-1-663 {
+  gap: 16px;
+  width: 21.7%;
+  height: fit-content;
+  display: flex;
+  padding: 24px;
+  background: white;
+  border-radius: 24px;
+  flex-direction: column;
+}
+.popUpWrap-0-1-783 {
+  display: block;
+}
+.tooltipWrapper-0-1-784 {
+  /* display: flex; */
+  position: relative;
+  cursor: pointer;
+}
+/* .hover-effe-box:hover {
+  box-shadow: 0px 0px 2px rgba(40, 41, 61, 0.04),
+    0px 4px 8px rgba(96, 97, 112, 0.16);
+  border-radius: 24px;
+} */
+.container-0-1-770 {
+  gap: 16px;
+  border: 1px solid rgba(244, 244, 244);
+  display: flex;
+  padding: 16px;
+  border-radius: 14px;
+  flex-direction: row;
+}
+.icon-0-1-772 {
+  /* width: 25%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconImage-0-1-771 {
+  width: 100%;
+}
+.labels-0-1-779 {
+  gap: 4px;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.headerContainer-0-1-774 {
+  gap: 6px;
+  display: flex;
+  flex-direction: row;
+}
+.header-0-1-773 {
+  color: rgba(10, 22, 41);
+  font-size: 16px;
+  font-weight: 700;
+}
+.subtext-0-1-777 {
+  color: rgba(125, 133, 146);
+  display: flex;
+  font-size: 12px;
+  font-weight: 400;
+  flex-direction: row;
+}
+.popUpWrap-0-1-805 {
+  display: block;
+}
+.container-0-1-792 {
+  gap: 16px;
+  border: 1px solid rgba(244, 244, 244);
+  display: flex;
+  padding: 16px;
+  border-radius: 14px;
+  flex-direction: row;
+}
+.iconImage-0-1-793 {
+  width: 100%;
+}
+.labels-0-1-801 {
+  gap: 4px;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.headerContainer-0-1-796 {
+  gap: 6px;
+  display: flex;
+  flex-direction: row;
+}
+.header-0-1-795 {
+  color: rgba(10, 22, 41);
+  font-size: 16px;
+  font-weight: 700;
+}
+.subtextBlue-0-1-800 {
+  color: rgba(0, 173, 231);
+  font-size: 12px;
+}
+.popUpWrap-0-1-820 {
+  display: block;
+}
+.container-0-1-807 {
+  gap: 16px;
+  border: 1px solid rgba(244, 244, 244);
+  display: flex;
+  padding: 16px;
+  border-radius: 14px;
+  flex-direction: row;
+}
+.icon-0-1-809 {
+  /* width: 25%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconImage-0-1-808 {
+  width: 100%;
+}
+.labels-0-1-816 {
+  gap: 4px;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.headerContainer-0-1-811 {
+  gap: 6px;
+  display: flex;
+  flex-direction: row;
+}
+.header-0-1-810 {
+  color: rgba(10, 22, 41);
+  font-size: 16px;
+  font-weight: 700;
+}
+.subtextBlue-0-1-815 {
+  color: rgba(0, 173, 231);
+  font-size: 12px;
+}
+.popUpWrap-0-1-835 {
+  display: block;
+}
+.container-0-1-822 {
+  gap: 16px;
+  border: 1px solid rgba(244, 244, 244);
+  display: flex;
+  padding: 16px;
+  border-radius: 14px;
+  flex-direction: row;
+}
+.icon-0-1-824 {
+  /* width: 25%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconImage-0-1-823 {
+  width: 100%;
+}
+.labels-0-1-831 {
+  gap: 4px;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.headerContainer-0-1-826 {
+  gap: 6px;
+  display: flex;
+  flex-direction: row;
+}
+.header-0-1-825 {
+  color: rgba(10, 22, 41);
+  font-size: 16px;
+  font-weight: 700;
+}
+.subtextBlue-0-1-830 {
+  color: rgba(0, 173, 231);
+  font-size: 12px;
+}
+.button-0-1-290 {
+  color: rgb(255, 255, 255);
+  border: 1px solid transparent;
+  display: inline-flex;
+  padding: 12px 20px;
+  font-size: 16px;
+  transition: transform 0.2s ease 0s;
+  align-items: center;
+  font-weight: 600;
+  line-height: 24px;
+  border-radius: 16px;
+  justify-content: center;
+  background-color: rgb(0, 173, 231);
+}
+.bodyContainer-0-1-1915 {
+  flex: 1 1 0px;
+  /* padding: 32px; */
+  flex-basis: 0px;
+  overflow-y: auto;
+  overscroll-behavior: none;
+}
+.ribbonTagContainer-0-1-1921 {
+  padding: 16px 24px;
+  background: #fff7e5;
+  border-radius: 16px;
+  margin-bottom: 32px;
+}
+.ribbonTagText-0-1-1922 {
+  display: flex;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 400;
+  justify-content: center;
+}
+.manageCouponContainer-0-1-1907 {
+  margin-bottom: 32px;
+}
+.couponCardWithCheckBoxContainer-0-1-1908 {
+  display: flex;
+  align-items: center;
+  /* justif-content: space-between; */
+}
+.couponContainer-0-1-1932 {
+  width: 100%;
+  border: 1px solid rgba(216, 224, 240);
+  height: 10.6em;
+  display: flex;
+  background: rgba(255, 255, 255);
+  border-radius: 24px;
+}
+.couponCard-0-1-1933 {
+  width: 4.25em;
+  background: #e0f3fb;
+  border-radius: 24px 0 0 24px;
+}
+.cardLeftDiscoundTextWrapper-0-1-1934 {
+  transform: rotate(-90deg);
+  margin-top: 5em;
+}
+.cardLeftDiscoundText-0-1-1935 {
+  color: rgba(0, 173, 231);
+  width: max-content;
+  padding: 33.5px 23px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.cardRightDiscoundWrapper-0-1-1936 {
+  width: 100%;
+  padding: 24px;
+}
+.cardRightContainer-0-1-1937 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.couponCodeText-0-1-1938 {
+  font-size: 18px;
+  /* font-weight: undefined; */
+  margin-bottom: 4px;
+}
+.couponCodeDescription-0-1-1939 {
+  color: rgba(10, 22, 41);
+  opacity: 0.5;
+  font-size: 14px;
+  font-weight: 600;
+}
+.tooltipWrapper-0-1-681 {
+  display: flex;
+  position: relative;
+}
+.deleteCouponBtn-0-1-1940 {
+  border: none;
+  cursor: pointer;
+  background: none;
+  text-decoration: none;
+}
+.couponTermsTextList-0-1-1941 {
+  margin-top: 10px;
+  margin-left: -24px;
+  list-style-type: disc;
+}
+.couponTermsText-0-1-1942 {
+  color: rgba(10, 22, 41);
+  opacity: 0.5;
+  font-size: 14px;
+  font-weight: 600;
+}

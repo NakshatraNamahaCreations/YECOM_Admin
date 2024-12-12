@@ -1,0 +1,43 @@
+.bodyContainer-0-1-55 {
+  gap: 35px;
+  border: none !important;
+  height: 80vh;
+  display: flex;
+  padding: 2rem;
+  margin-top: 10px;
+  border-radius: 10px !important;
+  flex-direction: row;
+  background-color: white !important;
+}
+.container-0-1-87 {
+  width: 31.5%;
+  border: 1px solid #bac8e3b2;
+  cursor: pointer;
+  height: 250px;
+  display: flex;
+  padding: 20px;
+  align-items: center;
+  border-radius: 24px;
+  flex-direction: column;
+  justify-content: center;
+}
+.iconContainer-0-1-88 {
+  width: 90%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  justify-content: center;
+  background-color: #f2fbfe;
+}
+.heading-0-1-89 {
+  color: #0a1629;
+  margin: 16px 0px 6px 0px;
+  font-size: 20px;
+  font-weight: 700;
+}
+.description-0-1-90 {
+  color: #7d8592;
+  font-size: 12px;
+  font-weight: 700;
+}

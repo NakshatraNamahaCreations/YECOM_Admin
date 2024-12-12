@@ -1,0 +1,89 @@
+.login-left-heading {
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 32px;
+  margin: 0 0 16px;
+  color: #333;
+}
+
+.login-left-subheading {
+  margin: 0 0 32px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  color: #666;
+}
+.accountLogin-heading {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 37px;
+  display: flex;
+  align-items: center;
+  color: #343a40;
+  margin: 0 0 10px;
+}
+.accountLogin-subHeading {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  /* margin-bottom: 40px; */
+  color: #666;
+}
+.accountLogin-mobile-field {
+  display: flex;
+  margin-top: 16px;
+  flex-direction: column;
+  position: relative;
+}
+.accountLogin-input-mobile {
+  padding-left: 60px;
+}
+.accountLogin-input {
+  padding: 12px 0 12px 10px;
+  background: #fff;
+  border-radius: 8px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  color: #333;
+  outline: none;
+  box-sizing: border-box;
+  height: 48px;
+}
+.accountLogin-mobile-field-code {
+  border-right: 1px solid #c4cdd5;
+  padding: 12px;
+  border-radius: 8px 0 0 8px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(0, 0, 0, 0.87);
+  box-sizing: border-box;
+  height: 48px;
+  position: absolute;
+  top: 33px;
+}
+.input-group {
+  width: 60% !important;
+  height: 50px;
+}
+.accountLogin-btn {
+  /* margin-top: 64px; */
+  padding: 14px 0px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  cursor: pointer;
+  border: none;
+  width: 200px;
+  color: rgb(154, 175, 196);
+  background-color: rgb(240, 244, 247);
+}
+.accountLogin-btn:hover {
+  background-color: #87ccec;
+  color: rgb(255, 255, 255);
+}

@@ -1,0 +1,257 @@
+.contentContainer-0-1-1108 {
+  gap: 24px;
+  display: flex;
+  flex-direction: row;
+}
+.contentRight-0-1-1109 {
+  gap: 24px;
+  width: 77%;
+  display: flex;
+  padding: 32px;
+  background: white;
+  border-radius: 24px;
+  margin-bottom: 10%;
+  flex-direction: column;
+}
+.infoContainer-0-1-1116 {
+  gap: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.items-0-1-1119 {
+  gap: 24px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.itemContainer-0-1-1110 {
+  display: flex;
+  flex-direction: column;
+}
+.itemLabel-0-1-1111 {
+  color: rgba(10, 22, 41);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 150%;
+}
+.itemValue-0-1-1112 {
+  color: rgba(125, 133, 146);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 150%;
+}
+.divider-0-1-1113 {
+  width: 95%;
+  border: 1px dashed rgba(216, 224, 240);
+  height: 1px;
+}
+.profilePic-0-1-1117 {
+  width: 50%;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+.profileImageContainer-0-1-1127 {
+  gap: 36px;
+  width: 292px;
+  height: 219px;
+  display: flex;
+  padding: 24px;
+  overflow: hidden;
+  background: rgba(244, 249, 253);
+  align-items: center;
+  border-radius: 24px;
+  flex-direction: column;
+  background-size: cover;
+  justify-content: center;
+  border: "1px dashed rgba(216, 224, 240)";
+}
+.studentInitials-0-1-1128 {
+  color: #15c0e6;
+  font-size: 4rem;
+  font-weight: 700;
+}
+.contentLeft-0-1-1120 {
+  /* gap: 16px; */
+  width: 24%;
+  /* height: fit-content; */
+  /* display: flex; */
+  /* padding: 24px; */
+  /* background: white; */
+  /* border-radius: 24px; */
+  /* flex-direction: column; */
+  /* padding-bottom: 8px; */
+}
+.container-0-1-1131 {
+  gap: 16px;
+  border: 1px solid rgba(244, 244, 244);
+  display: flex;
+  padding: 16px;
+  border-radius: 14px;
+  flex-direction: row;
+  background-color: white;
+  cursor: pointer;
+}
+.icon-0-1-1133 {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconImage-0-1-1132 {
+  width: 100%;
+}
+.labels-0-1-1136 {
+  gap: 4px;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.header-0-1-1134 {
+  color: rgba(10, 22, 41);
+  font-size: 16px;
+  font-weight: 700;
+}
+.subtext-0-1-1135 {
+  color: rgba(125, 133, 146);
+  display: flex;
+  font-size: 12px;
+  font-weight: 400;
+  flex-direction: row;
+}
+.container-0-1-1137 {
+  gap: 16px;
+  border: 1px solid rgba(244, 244, 244);
+  display: flex;
+  padding: 16px;
+  border-radius: 14px;
+  flex-direction: row;
+}
+.icon-0-1-1139 {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconImage-0-1-1138 {
+  width: 100%;
+}
+.labels-0-1-1142 {
+  gap: 4px;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.header-0-1-1140 {
+  color: rgba(10, 22, 41);
+  font-size: 16px;
+  font-weight: 700;
+}
+.subtext-0-1-1141 {
+  color: rgba(125, 133, 146);
+  display: flex;
+  font-size: 12px;
+  font-weight: 400;
+  flex-direction: row;
+}
+.container-0-1-1143 {
+  gap: 16px;
+  border: 1px solid rgba(244, 244, 244);
+  display: flex;
+  padding: 16px;
+  border-radius: 14px;
+  flex-direction: row;
+}
+.icon-0-1-1145 {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconImage-0-1-1144 {
+  width: 100%;
+}
+.labels-0-1-1148 {
+  gap: 4px;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.header-0-1-1146 {
+  color: rgba(10, 22, 41);
+  font-size: 16px;
+  font-weight: 700;
+}
+.subtext-0-1-1147 {
+  color: rgba(125, 133, 146);
+  display: flex;
+  font-size: 12px;
+  font-weight: 400;
+  flex-direction: row;
+}
+.container-0-1-1149 {
+  gap: 16px;
+  border: 1px solid rgba(244, 244, 244);
+  display: flex;
+  padding: 16px;
+  border-radius: 14px;
+  flex-direction: row;
+}
+.icon-0-1-1151 {
+  width: 25%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iconImage-0-1-1150 {
+  width: 100%;
+}
+.labels-0-1-1154 {
+  gap: 4px;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.header-0-1-1152 {
+  color: rgba(10, 22, 41);
+  font-size: 16px;
+  font-weight: 700;
+}
+.subtext-0-1-1153 {
+  color: rgba(125, 133, 146);
+  display: flex;
+  font-size: 12px;
+  font-weight: 400;
+  flex-direction: row;
+}
+.secondary-d102-0-1-1157.secondary-d102-0-1-1157:hover {
+  box-shadow: rgba(0, 173, 231, 0.1) 0px 8px 16px;
+  background-color: rgb(242, 251, 254);
+  transform: scale(1.01);
+  border: 1px solid rgb(51, 189, 236);
+}
+.normalIconLeft-0-1-151 {
+  margin-right: 8px;
+}
+.showcourse-0-1-1109 {
+  /* gap: 24px; */
+  padding: 32px;
+  background: white;
+  border-radius: 24px;
+  margin-bottom: 10%;
+}
+.courseName-0-1-1713 {
+  color: rgba(10, 22, 41);
+  width: 85%;
+  overflow: hidden;
+  font-size: 1rem;
+  word-break: break-all;
+  font-weight: 600;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,173 @@
+.courseCard-0-1-330 {
+  border: 1px solid #eee;
+  cursor: pointer;
+  position: relative;
+  border-radius: 16px;
+  background-color: #fff;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+.courseCardTag-0-1-331 {
+  top: 16px;
+  left: 0;
+  color: #fff;
+  padding: 4px 8px;
+  position: absolute;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: #7d8592;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.courseCardTag-0-1-331-youtube {
+  top: 16px;
+  right: 0;
+  color: #fff;
+  padding: 4px 8px;
+  position: absolute;
+  font-size: 14px;
+  font-weight: 700;
+  background-color: #7d8592;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.courseCardImage-0-1-334 {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+.courseCardImage-0-1-334-987 {
+  width: 100%;
+  height: 165px;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+.courseCardImage-0-1-334-youtube {
+  width: 100%;
+  height: 175px;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+.courseCardContent-0-1-335 {
+  height: 183px;
+  padding: 16px;
+  word-break: break-all;
+}
+.courseCardContent-0-1-335-123 {
+  height: 125px;
+  padding: 16px;
+  word-break: break-all;
+}
+.courseCardTitle-0-1-336 {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 16px;
+  margin-top: 0;
+  /* max-height: 40px; */
+  word-break: break-all;
+  font-weight: 700;
+  padding-top: 0;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.courseCardTitle-0-1-336-descr {
+  display: -webkit-box;
+  overflow: hidden;
+  font-size: 12px;
+  margin-top: 8px;
+  /* max-height: 40px; */
+  word-break: break-all;
+  font-weight: 500;
+  padding-top: 0;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.courseCreatedBy-0-1-338 {
+  color: #7d8592;
+  display: -webkit-box;
+  overflow: hidden;
+  margin-top: 8px;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+.courseCardTags-0-1-333 {
+  color: #00ade7;
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 14px;
+  margin-top: 6px;
+  font-weight: 600;
+  line-height: 16px;
+  margin-right: 8px;
+  border-radius: 6px;
+  background-color: rgba(0, 173, 231, 10%);
+}
+.courseCardPriceSection-0-1-337 {
+  gap: 8px;
+  width: 100%;
+  bottom: 16px;
+  display: flex;
+  position: absolute;
+  font-size: 18px;
+}
+
+.container-0-1-2782 {
+  flex: 1;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.heading-0-1-2783 {
+  font-size: 20px;
+  font-weight: 700;
+}
+.description-0-1-2784 {
+  color: #7d8592;
+  font-size: 16px;
+  margin-top: 8px;
+  font-weight: 400;
+}
+.carousel-slick-53 {
+  padding: 10px;
+}
+
+/* .slick-initialized .slick-slide {
+  width: 310px !important;
+} */
+.slick-next:before,
+.slick-prev:before {
+  color: #63aef3 !important;
+}
+.react-multi-carousel-item {
+  /* width: -1px !important; */
+  /* padding: 6px 10px !important; */
+}
+.courseOverViewCardContent-0-1-335 {
+  height: 100px;
+  padding: 16px;
+  word-break: break-all;
+}
+.courseOverViewdocumentCardContent-0-1-335 {
+  /* height: 100px; */
+  padding: 16px;
+  word-break: break-all;
+}
+.docs-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.courseCardDocsImage-0-1-334 {
+  /* width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px; */
+  border-bottom: 1px solid #efefef !important;
+}
