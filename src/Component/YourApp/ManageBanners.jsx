@@ -47,9 +47,9 @@ function ManageBanners() {
         setError("Please upload a valid image file (PNG or JPEG).");
         return;
       }
-      const maxSize = 800 * 600;
+      const maxSize = 1080 * 360;
       if (file.size > maxSize) {
-        setError("Image size should be 800px x 600px or smaller.");
+        setError("Image size should be 1080px x 360px or smaller.");
         return;
       }
       setError(null);
@@ -97,9 +97,9 @@ function ManageBanners() {
         setError("Please upload a valid image file (PNG or JPEG).");
         return;
       }
-      const maxSize = 800 * 600;
+      const maxSize = 1080 * 360;
       if (file.size > maxSize) {
-        setError("Image size should be 800px x 600px or smaller.");
+        setError("Image size should be 1080px x 360px or smaller.");
         return;
       }
       setError(null);

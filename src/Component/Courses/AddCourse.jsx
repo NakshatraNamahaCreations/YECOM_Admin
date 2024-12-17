@@ -154,10 +154,10 @@ function AddCourse() {
         return;
       }
       // Check file size
-      const maxSize = 800 * 600; // 800px x 600px
+      const maxSize = 1080 * 360; // 800px x 600px
       if (file.size > maxSize) {
         // Display an error message on the screen
-        setError("Image size should be 800px x 600px or smaller.");
+        setError("Image size should be 1080px x 360px or smaller.");
         return;
       }
       // Clear any previous errors
