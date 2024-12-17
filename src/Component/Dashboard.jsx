@@ -46,14 +46,14 @@ function Dashboard() {
             </div>
           </div>
         </div> */}
-        <div class="col-lg-4">
+        {/* <div class="col-lg-4">
           <div class="card card-border-1 text-center mb-lg-0">
             <div class="card-body">
               <h4 class="h2 mb-0">0</h4>
               <div>Total User</div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

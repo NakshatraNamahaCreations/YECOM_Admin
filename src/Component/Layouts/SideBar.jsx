@@ -85,7 +85,7 @@ function SideBar() {
             </MenuItem> */}
           {/* </SubMenu> */}
           {/* Courses===================== */}
-          {/* <SubMenu
+          <SubMenu
             className="sidebar-font-menu"
             label="Courses"
             icon={<FaBookOpen className="sidebar-icons" />}
@@ -100,14 +100,14 @@ function SideBar() {
               }}
             >
               My Courses
-            </MenuItem> */}
-          {/* <MenuItem
+            </MenuItem>
+            {/* <MenuItem
               className="sidebar-font-submenu"
               component={<Link to="#" />}
             >
               Global Courses
             </MenuItem> */}
-          {/* <MenuItem
+            {/* <MenuItem
               className="sidebar-font-submenu"
               component={<Link to="/courses/manage-coupons" />}
               style={{
@@ -118,13 +118,13 @@ function SideBar() {
             >
               Manage Coupon
             </MenuItem> */}
-          {/* <MenuItem
+            {/* <MenuItem
               className="sidebar-font-submenu"
               component={<Link to="#" />}
             >
               Backend Addition
             </MenuItem> */}
-          {/* </SubMenu> */}
+          </SubMenu>
           {/* Content===================== */}
           {/* <SubMenu
             className="sidebar-font-menu"

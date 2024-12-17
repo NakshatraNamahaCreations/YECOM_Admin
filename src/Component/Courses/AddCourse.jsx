@@ -221,7 +221,7 @@ function AddCourse() {
                 onChange={(e) => setCourseDescription(e.target.value)}
               />
             </div>
-            <div
+            {/* <div
               className="mt-2 mb-2"
               style={{ border: "1px dashed #e4e6e8" }}
             ></div>
@@ -266,7 +266,7 @@ function AddCourse() {
                   />
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div
               className="mb-3"

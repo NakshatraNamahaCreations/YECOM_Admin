@@ -31,6 +31,7 @@ function UserAction() {
   const [notificationDescription, setNotificationDescription] = useState("");
   const [campaignTitle, setCampaignTitle] = useState("");
   console.log("selectedOption", selectedOption);
+
   const handleOptionChange = (event) => {
     setSelectedOption(event.target.value);
   };
@@ -44,6 +45,24 @@ function UserAction() {
   };
 
   const handleNext = () => {
+    if (activeStep === 0 && !selectedOption) {
+      alert("Please select a notification method before proceeding.");
+      return;
+    }
+
+    if (activeStep === 1 && !targetAudience) {
+      alert("Please select a target audience before proceeding.");
+      return;
+    }
+
+    if (activeStep === 2 && !notificationsTitle) {
+      alert("Please enter a notifications title before proceeding.");
+      return;
+    }
+    if (activeStep === 3 && !campaignTitle) {
+      alert("Please enter a campaign title before proceeding.");
+      return;
+    }
     let newSkipped = skipped;
     if (isStepSkipped(activeStep)) {
       newSkipped = new Set(newSkipped.values());
@@ -208,6 +227,7 @@ function UserAction() {
                     <div class="marginLeft-0-1-718">
                       <div class="abountInfo-0-1-719">
                         I want to send communication via
+                        <span style={{ color: "red" }}>*</span>
                       </div>
                       <div>
                         <div class="radioInputTagContainer-0-1-720">
@@ -220,12 +240,6 @@ function UserAction() {
                               }}
                             >
                               <div class="tooltipWrapper-0-1-734">
-                                <div
-                                  class="tooltipTip-0-1-735 top-0-1-736"
-                                  style={{ top: "-53.5938px", opacity: "0" }}
-                                >
-                                  Channel change is disabled
-                                </div>
                                 <input
                                   type="radio"
                                   name="notificationMethod"
@@ -247,12 +261,6 @@ function UserAction() {
                               }}
                             >
                               <div class="tooltipWrapper-0-1-734">
-                                <div
-                                  class="tooltipTip-0-1-735 top-0-1-736"
-                                  style={{ top: "-53.5938px", opacity: "0" }}
-                                >
-                                  Channel change is disabled
-                                </div>
                                 <input
                                   name="notificationMethod"
                                   value="2"
@@ -265,7 +273,7 @@ function UserAction() {
                               <div>Email</div>
                             </label>
                           </div>
-                          <div class="radioBtnWrap-0-1-732">
+                          {/* <div class="radioBtnWrap-0-1-732">
                             <label
                               style={{
                                 display: "flex",
@@ -291,7 +299,7 @@ function UserAction() {
                               </div>
                               <div>SMS</div>
                             </label>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>
@@ -313,29 +321,19 @@ function UserAction() {
                   <div class="marginLeft-0-1-718">
                     <div class="abountInfo-0-1-719">
                       I want to select my target audience based on user activity
+                      <span style={{ color: "red" }}>*</span>
                     </div>
                     <div>
                       <select
                         className="form-select mt-3"
                         onChange={(e) => setTargetAudience(e.target.value)}
-                        // style={{ borderRadius: "19px" }}
                       >
                         <option value="">Select</option>
-                        <option>When user signs up on app</option>
-                        <option value="When user buys any course">
-                          When user buys any course
+                        <option value="When user has bought any plan">
+                          When user has bought any plan
                         </option>
-                        <option value="When app user drops from payment page">
-                          When app user drops from payment page
-                        </option>
-                        <option value="When app user visits a course page multiple times">
-                          When app user visits a course page multiple times
-                        </option>
-                        <option value="When app user visits a course page once">
-                          When app user visits a course page once
-                        </option>
-                        <option value="When user drops from webinar landing page">
-                          When user drops from webinar landing page
+                        <option value="When user doesn’t purchase any plan">
+                          When user doesn’t purchase any plan
                         </option>
                       </select>
                     </div>
@@ -348,10 +346,12 @@ function UserAction() {
       case 2:
         return (
           <>
-            {selectedOption === "1" ? (
+            {selectedOption === "1" || selectedOption === "2" ? (
               <div className="mt-4 mb-5">
                 <div class="content">
-                  <div class="headingInfoText-0-1-701">Title</div>
+                  <div class="headingInfoText-0-1-701">
+                    Title<span style={{ color: "red" }}>*</span>
+                  </div>
                   <div class="editInput-0-1-729 undefined" tabindex="0">
                     <div class="labelContainer-0-1-730">
                       <label class="editInputLabel-0-1-731" for="title"></label>
@@ -359,7 +359,7 @@ function UserAction() {
                     <div>
                       <textarea
                         className="textarea-0-1-732 textAreaDesc-0-1-724"
-                        placeholder="Yay! Your next favourite course is here."
+                        placeholder="Campaign title"
                         onChange={(e) => setNotificationsTitle(e.target.value)}
                       />
                     </div>
@@ -369,8 +369,8 @@ function UserAction() {
                   </div>
                   <textarea
                     className="textarea-0-1-732 textAreaDesc-0-1-724"
-                    placeholder="Gone are those days when the only skill required was ‘formal education’ to progress for your overall success.
-One has to master their communication skills no matter which industry you are serving."
+                    //                     placeholder="Gone are those days when the only skill required was ‘formal education’ to progress for your overall success.
+                    // One has to master their communication skills no matter which industry you are serving."
                     onChange={(e) => setNotificationDescription(e.target.value)}
                   />
 
@@ -432,11 +432,12 @@ One has to master their communication skills no matter which industry you are se
         return (
           <>
             <>
-              {selectedOption === "1" ? (
+              {selectedOption === "1" || selectedOption === "2" ? (
                 <div className="mt-5 mb-5">
                   <div class="content">
                     <div class="headingInfoText-0-1-701">
                       My campaign title is
+                      <span style={{ color: "red" }}>*</span>
                     </div>
                     <br />
                     <div>

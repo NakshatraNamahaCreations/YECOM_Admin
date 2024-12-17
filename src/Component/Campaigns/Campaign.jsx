@@ -56,22 +56,18 @@ function Campaign() {
     {
       name: "Campaign Name",
       selector: (row) => row.campaignTitle,
-      sortable: true,
     },
     {
       name: "Campaign Type",
       selector: (row) => row.campaignType,
-      sortable: true,
     },
     {
       name: "Target Audience",
       selector: (row) => row.targetAudience,
-      sortable: true,
     },
     {
       name: "Channel Used",
       selector: (row) => row.channelUsed,
-      sortable: true,
     },
     // {
     //   name: "Start Time",
@@ -94,7 +90,6 @@ function Campaign() {
           </button>
         </div>
       ),
-      sortable: true,
     },
   ];
 
@@ -147,6 +142,7 @@ function Campaign() {
           columns={columns}
           data={allCompaign}
           defaultSortFieldId={1}
+          pagination
         />
       </div>
     </div>

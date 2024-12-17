@@ -55,6 +55,7 @@ import Regsiter from "./pages/Regsiter";
 import Payments from "./Component/Peoples/User/Payments";
 import TryToBooking from "./Component/Peoples/User/TryToBooking";
 import Pricing from "./Component/Content/Pricing";
+import AddContent from "./Component/Courses/AddContent";
 
 function App() {
   return (
@@ -151,6 +152,19 @@ function App() {
                 <>
                   <Header />
                   <AddModules />
+                </>
+              }
+            />
+          }
+        />
+        <Route
+          path="/courses/add-contents/:objectId/:couserTitle"
+          element={
+            <Layout
+              Children={
+                <>
+                  <Header />
+                  <AddContent />
                 </>
               }
             />
