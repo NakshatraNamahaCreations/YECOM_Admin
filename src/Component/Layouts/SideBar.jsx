@@ -18,6 +18,7 @@ import {
 } from "react-icons/md";
 import { TbReportAnalytics } from "react-icons/tb";
 import { IoIosPricetags } from "react-icons/io";
+import { IoLogOutOutline } from "react-icons/io5";
 
 function SideBar() {
   const user = JSON.parse(localStorage.getItem("ecomAdmin"));
@@ -37,6 +38,12 @@ function SideBar() {
   const getBackgroundColor = (path) => {
     return pathname === path ? "#00007c6b" : "";
   };
+
+  const logoutUser = () => {
+    localStorage.removeItem("ecomAdmin");
+    window.location.assign("/");
+  };
+
   return (
     <div>
       <Sidebar>
@@ -360,13 +367,13 @@ function SideBar() {
             </MenuItem>
           </SubMenu> */}
 
-          {/* <MenuItem
+          <MenuItem
             className="sidebar-font-menu"
-            component={<Link to="/dashboard" />}
-            icon={<FaUniversalAccess className="sidebar-icons" />}
+            icon={<IoLogOutOutline className="sidebar-icons" />}
+            onClick={logoutUser}
           >
-            User Controls
-          </MenuItem> */}
+            Logout
+          </MenuItem>
         </Menu>
       </Sidebar>
     </div>

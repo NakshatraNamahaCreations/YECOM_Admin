@@ -63,33 +63,35 @@ function Login() {
   };
 
   return (
-    <div className="row me-0">
+    <div className="row me-0 justify-center">
       <ToastContainer position="top-right" />
-      <div className="col-md-6" style={{ backgroundColor: "#F7FAFC" }}>
-        <div style={{ padding: "100px" }}>
-          <p class="login-left-heading">The future of education is here</p>
+      {/* <div className="col-md-6" style={{ backgroundColor: "#F7FAFC" }}>
+        <div> */}
+      {/* <p class="login-left-heading">The future of education is here</p>
           <p class="login-left-subheading">
             {" "}
             With an all in one platform for the teaching world
-          </p>
-        </div>
-        <div>
-          {/* <img
-            src="login-image.jpg"
-            alt=""
-            style={{ position: "absolute", width: "100px", left: "5%" }}
-          /> */}
-        </div>
-      </div>
+          </p> */}
+
+      {/* </div> */}
+      {/* <div>
+          
+        </div> */}
+      {/* </div> */}
       <div className="col-md-6" style={{ padding: "100px" }}>
-        <p class="accountLogin-heading">Login to your account</p>
+        <img
+          src="../plogo.png"
+          alt=""
+          style={{ width: "250px", height: "90px" }}
+        />
+        <p class="accountLogin-heading mt-3">Login to your account</p>
         <p class="accountLogin-subHeading">
           Please enter your mobile number to continue
         </p>
         <div>
           <div class="accountLogin-mobile-field">
             <InputGroup className="mb-3">
-              <InputGroup.Text id="basic-addon1"></InputGroup.Text>
+              {/* <InputGroup.Text id="basic-addon1"></InputGroup.Text> */}
               <Form.Control
                 // type="number"
                 placeholder="Email id"
@@ -101,7 +103,7 @@ function Login() {
           </div>
           <div class="accountLogin-mobile-field">
             <InputGroup className="mb-3">
-              <InputGroup.Text id="basic-addon1"></InputGroup.Text>
+              {/* <InputGroup.Text id="basic-addon1"></InputGroup.Text> */}
               <Form.Control
                 // type="number"
                 placeholder="Password"
