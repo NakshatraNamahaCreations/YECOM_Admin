@@ -381,40 +381,35 @@ function AddContent() {
   //   }
   // }, [allZip, allImage, allDocs, allVideos, allModules]);
 
-  useEffect(
-    () => {
-      if (allModules.length > 0) {
-        const allModulesIds = allModules.map((module) => module._id);
+  useEffect(() => {
+    if (allModules.length > 0) {
+      const allModulesIds = allModules.map((module) => module._id);
 
-        // Filter videos by module ID
-        const videosFiltered = allVideos.filter((video) =>
-          allModulesIds.includes(video.moduleId)
-        );
-        setVideosFilteredByModuleId(videosFiltered);
+      // Filter videos by module ID
+      const videosFiltered = allVideos.filter((video) =>
+        allModulesIds.includes(video.moduleId)
+      );
+      setVideosFilteredByModuleId(videosFiltered);
 
-        // Filter documents by module ID
-        const docsFiltered = allDocs.filter((doc) =>
-          allModulesIds.includes(doc.moduleId)
-        );
-        setDocsFilteredByModuleId(docsFiltered);
+      // Filter documents by module ID
+      const docsFiltered = allDocs.filter((doc) =>
+        allModulesIds.includes(doc.moduleId)
+      );
+      setDocsFilteredByModuleId(docsFiltered);
 
-        // Filter images by module ID
-        const imagesFiltered = allImage.filter((image) =>
-          allModulesIds.includes(image.moduleId)
-        );
-        setImageFilteredByModuleId(imagesFiltered);
+      // Filter images by module ID
+      const imagesFiltered = allImage.filter((image) =>
+        allModulesIds.includes(image.moduleId)
+      );
+      setImageFilteredByModuleId(imagesFiltered);
 
-        // Filter zip files by module ID
-        // const zipFiltered = allZip.filter((zip) =>
-        //   allModulesIds.includes(zip.moduleId)
-        // );
-        // setZipFilteredByModuleId(zipFiltered);
-      }
-    },
-    [
-      // allModules, allVideos, allDocs, allImage
-    ]
-  );
+      // Filter zip files by module ID
+      // const zipFiltered = allZip.filter((zip) =>
+      //   allModulesIds.includes(zip.moduleId)
+      // );
+      // setZipFilteredByModuleId(zipFiltered);
+    }
+  }, [allModules, allVideos, allDocs, allImage]);
 
   // const makeDecision = () => {
   //   console.log("Making decision...");

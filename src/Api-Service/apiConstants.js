@@ -1,9 +1,18 @@
 const apiUrl = {
   BASEURL: "https://api.proleverageadmin.in/api",
   IMAGEURL: "https://api.proleverageadmin.in/",
+
+  // BASEURL: "http://localhost:8082/api",
+  // IMAGEURL: "http://localhost:8082/",
+
   GET_WEB_BANNER: "/banner/getwebbanner",
   GET_APP_BANNER: "/banner/getappbanner",
   CREATE_BANNERS: "/banner/createbanner",
+
+  TEAM_LOGIN: "/team/loginteammember",
+  GET_ALL_TEAMMEMBER: "/team/getallteammembers",
+  UPDATE_TEAM_MEMBER: "/team/updateteammember/",
+  DETELE_TEAMMEMBER: "/team/deleteteammember/",
 
   CREATE_YOUTUBE_VIDEO: "/youtube/addvideo",
   GET_ALL_YOUTUBE_VIDEOS: "/youtube/getallvideo",
@@ -51,9 +60,7 @@ const apiUrl = {
   GET_FREEMATERIAL_VIDEO: "/freematerial-video/getallvideo",
   ADD_TEAMMEMBER: "/team/addteammember",
   GET_PARTICULAR_MEMBER: "/team/getteammember/",
-  GET_ALL_TEAMMEMBER: "/team/getallteammembers",
-  UPDATE_TEAM_MEMBER: "/team/updateteammember/",
-  DETELE_TEAMMEMBER: "/team/deleteteammember/",
+
   GET_ALL_USER: "/users/getallusers",
   GET_PARTICULAR_USER: "/user/getparticularuser/",
   PURCHASE_COURSE: "/user/purchasecourse/",

@@ -17,7 +17,7 @@ function Login() {
     e.preventDefault();
     try {
       const config = {
-        url: "/admin/login",
+        url: apiUrl.TEAM_LOGIN,
         method: "post",
         baseURL: apiUrl.BASEURL,
         headers: { "content-type": "application/json" },
@@ -25,17 +25,19 @@ function Login() {
       };
       await axios(config).then(function (response) {
         if (response.status === 200) {
-          toast("🦄 Login succesfull", {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
+          alert("Login Success");
+          console.log("Login Response:", response);
+          // toast("🦄 Login succesfull", {
+          //   position: "top-right",
+          //   autoClose: 5000,
+          //   hideProgressBar: false,
+          //   closeOnClick: true,
 
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          });
+          //   pauseOnHover: true,
+          //   draggable: true,
+          //   progress: undefined,
+          //   theme: "light",
+          // });
 
           localStorage.setItem("ecomAdmin", JSON.stringify(response.data.user));
 
@@ -46,16 +48,17 @@ function Login() {
         }
       });
     } catch (error) {
-      toast.error("Invalid email or password", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      console.log("Login Error", error);
+      // toast.error("Invalid email or password", {
+      //   position: "top-right",
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      //   theme: "light",
+      // });
     }
   };
 

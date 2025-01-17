@@ -20,6 +20,8 @@ import { TbReportAnalytics } from "react-icons/tb";
 import { IoIosPricetags } from "react-icons/io";
 
 function SideBar() {
+  const user = JSON.parse(localStorage.getItem("ecomAdmin"));
+  console.log("user in navbar", user);
   const location = useLocation();
   const { pathname } = location;
   // console.log("pathname", pathname);
@@ -85,29 +87,31 @@ function SideBar() {
             </MenuItem> */}
           {/* </SubMenu> */}
           {/* Courses===================== */}
-          <SubMenu
-            className="sidebar-font-menu"
-            label="Courses"
-            icon={<FaBookOpen className="sidebar-icons" />}
-          >
-            <MenuItem
-              className="sidebar-font-submenu"
-              component={<Link to="/courses/course-list" />}
-              style={{
-                borderLeft: getBorderLeft("/courses/course-list"),
-                color: getColor("/courses/course-list"),
-                // borderRadius: getBorderRadius("#"),
-              }}
+          {user.course && (
+            <SubMenu
+              className="sidebar-font-menu"
+              label="Courses"
+              icon={<FaBookOpen className="sidebar-icons" />}
             >
-              My Courses
-            </MenuItem>
-            {/* <MenuItem
+              <MenuItem
+                className="sidebar-font-submenu"
+                component={<Link to="/courses/course-list" />}
+                style={{
+                  borderLeft: getBorderLeft("/courses/course-list"),
+                  color: getColor("/courses/course-list"),
+                  // borderRadius: getBorderRadius("#"),
+                }}
+              >
+                My Courses
+              </MenuItem>
+
+              {/* <MenuItem
               className="sidebar-font-submenu"
               component={<Link to="#" />}
             >
               Global Courses
             </MenuItem> */}
-            {/* <MenuItem
+              {/* <MenuItem
               className="sidebar-font-submenu"
               component={<Link to="/courses/manage-coupons" />}
               style={{
@@ -118,13 +122,14 @@ function SideBar() {
             >
               Manage Coupon
             </MenuItem> */}
-            {/* <MenuItem
+              {/* <MenuItem
               className="sidebar-font-submenu"
               component={<Link to="#" />}
             >
               Backend Addition
             </MenuItem> */}
-          </SubMenu>
+            </SubMenu>
+          )}
           {/* Content===================== */}
           {/* <SubMenu
             className="sidebar-font-menu"
@@ -145,51 +150,58 @@ function SideBar() {
           </SubMenu> */}
 
           {/* Your App===================== */}
-          <SubMenu
-            className="sidebar-font-menu"
-            label="User App"
-            icon={<FaMobileRetro className="sidebar-icons" />}
-          >
-            {/* <MenuItem
+          {user.banner || user.youtubeVideo || user.broadcast ? (
+            <SubMenu
+              className="sidebar-font-menu"
+              label="User App"
+              icon={<FaMobileRetro className="sidebar-icons" />}
+            >
+              {/* <MenuItem
               className="sidebar-font-submenu"
               component={<Link to="#" />}
             >
               Configure App
             </MenuItem> */}
-            <MenuItem
-              className="sidebar-font-submenu"
-              component={<Link to="/app/manage-banners" />}
-              style={{
-                borderLeft: getBorderLeft("/app/manage-banners"),
-                color: getColor("/app/manage-banners"),
-                // borderRadius: getBorderRadius("#"),
-              }}
-            >
-              Manage Banners
-            </MenuItem>
-            <MenuItem
-              className="sidebar-font-submenu"
-              component={<Link to="/app/youtube-video" />}
-              style={{
-                borderLeft: getBorderLeft("/app/youtube-video"),
-                color: getColor("/app/youtube-video"),
-                // borderRadius: getBorderRadius("#"),
-              }}
-            >
-              Youtube Video
-            </MenuItem>
-            <MenuItem
-              className="sidebar-font-submenu"
-              component={<Link to="/app/broadcasting" />}
-              style={{
-                borderLeft: getBorderLeft("/app/broadcasting"),
-                color: getColor("/app/broadcasting"),
-                // borderRadius: getBorderRadius("#"),
-              }}
-            >
-              Broadcast
-            </MenuItem>
-            {/* <MenuItem
+              {user.banner && (
+                <MenuItem
+                  className="sidebar-font-submenu"
+                  component={<Link to="/app/manage-banners" />}
+                  style={{
+                    borderLeft: getBorderLeft("/app/manage-banners"),
+                    color: getColor("/app/manage-banners"),
+                    // borderRadius: getBorderRadius("#"),
+                  }}
+                >
+                  Manage Banners
+                </MenuItem>
+              )}
+              {user.youtubeVideo && (
+                <MenuItem
+                  className="sidebar-font-submenu"
+                  component={<Link to="/app/youtube-video" />}
+                  style={{
+                    borderLeft: getBorderLeft("/app/youtube-video"),
+                    color: getColor("/app/youtube-video"),
+                    // borderRadius: getBorderRadius("#"),
+                  }}
+                >
+                  Youtube Video
+                </MenuItem>
+              )}
+              {user.broadcast && (
+                <MenuItem
+                  className="sidebar-font-submenu"
+                  component={<Link to="/app/broadcasting" />}
+                  style={{
+                    borderLeft: getBorderLeft("/app/broadcasting"),
+                    color: getColor("/app/broadcasting"),
+                    // borderRadius: getBorderRadius("#"),
+                  }}
+                >
+                  Broadcast
+                </MenuItem>
+              )}
+              {/* <MenuItem
               className="sidebar-font-submenu"
               component={<Link to="/app/in-app-notification" />}
               style={{
@@ -200,7 +212,8 @@ function SideBar() {
             >
               In App Notification
             </MenuItem> */}
-          </SubMenu>
+            </SubMenu>
+          ) : null}
           {/* <MenuItem
             className="sidebar-font-menu"
             component={<Link to="/dashboard" />}
@@ -216,28 +229,32 @@ function SideBar() {
           >
             Analytics
           </MenuItem> */}
-          <MenuItem
-            className="sidebar-font-menu"
-            component={<Link to="/users/payments" />}
-            icon={<MdOutlinePayment className="sidebar-icons" />}
-            style={{
-              borderLeft: getBorderLeft("/users/payments"),
-              color: getColor("/users/payments"),
-            }}
-          >
-            Payments
-          </MenuItem>
-          <MenuItem
-            className="sidebar-font-menu"
-            component={<Link to="/users/try-to-booking" />}
-            icon={<TbReportAnalytics className="sidebar-icons" />}
-            style={{
-              borderLeft: getBorderLeft("/users/try-to-booking"),
-              color: getColor("/users/try-to-booking"),
-            }}
-          >
-            Try to Booking
-          </MenuItem>
+          {user.payment && (
+            <MenuItem
+              className="sidebar-font-menu"
+              component={<Link to="/users/payments" />}
+              icon={<MdOutlinePayment className="sidebar-icons" />}
+              style={{
+                borderLeft: getBorderLeft("/users/payments"),
+                color: getColor("/users/payments"),
+              }}
+            >
+              Payments
+            </MenuItem>
+          )}
+          {user.tryToBook && (
+            <MenuItem
+              className="sidebar-font-menu"
+              component={<Link to="/users/try-to-booking" />}
+              icon={<TbReportAnalytics className="sidebar-icons" />}
+              style={{
+                borderLeft: getBorderLeft("/users/try-to-booking"),
+                color: getColor("/users/try-to-booking"),
+              }}
+            >
+              Try to Booking
+            </MenuItem>
+          )}
           {/* <SubMenu
             className="sidebar-font-menu"
             label="User"
@@ -266,59 +283,68 @@ function SideBar() {
             </MenuItem>
           </SubMenu> */}
           {/* chat================================ */}
-          <MenuItem
-            className="sidebar-font-menu"
-            component={<Link to="/chat" />}
-            icon={<BsFillChatQuoteFill className="sidebar-icons" />}
-            style={{
-              borderLeft: getBorderLeft("/chat"),
-              color: getColor("/chat"),
-              // borderRadius: getBorderRadius("#"),
-            }}
-          >
-            Chat
-          </MenuItem>
-          <MenuItem
-            className="sidebar-font-menu"
-            component={<Link to="/pricing" />}
-            icon={<IoIosPricetags className="sidebar-icons" />}
-            style={{
-              borderLeft: getBorderLeft("/pricing"),
-              color: getColor("/pricing"),
-              // borderRadius: getBorderRadius("#"),
-            }}
-          >
-            Pricing
-          </MenuItem>
-          {/* People===================== */}
-          <SubMenu
-            className="sidebar-font-menu"
-            label="Marketing"
-            icon={<MdCampaign className="sidebar-icons" />}
-          >
-            <MenuItem
-              className="sidebar-font-submenu"
-              component={<Link to="/people/team-members" />}
-              style={{
-                borderLeft: getBorderLeft("/people/team-members"),
-                color: getColor("/people/team-members"),
-              }}
-            >
-              Team Members
-            </MenuItem>
+          {user.chat && (
             <MenuItem
               className="sidebar-font-menu"
-              component={<Link to="/campaigns/list" />}
+              component={<Link to="/chat" />}
+              icon={<BsFillChatQuoteFill className="sidebar-icons" />}
               style={{
-                borderLeft: getBorderLeft("/campaigns/list"),
-                color: getColor("/campaigns/list"),
+                borderLeft: getBorderLeft("/chat"),
+                color: getColor("/chat"),
                 // borderRadius: getBorderRadius("#"),
               }}
             >
-              Campaigns(Push notifications)
+              Chat
             </MenuItem>
-          </SubMenu>
-
+          )}
+          {user.pricing && (
+            <MenuItem
+              className="sidebar-font-menu"
+              component={<Link to="/pricing" />}
+              icon={<IoIosPricetags className="sidebar-icons" />}
+              style={{
+                borderLeft: getBorderLeft("/pricing"),
+                color: getColor("/pricing"),
+                // borderRadius: getBorderRadius("#"),
+              }}
+            >
+              Pricing
+            </MenuItem>
+          )}
+          {/* People===================== */}
+          {user.team || user.campaign ? (
+            <SubMenu
+              className="sidebar-font-menu"
+              label="Marketing"
+              icon={<MdCampaign className="sidebar-icons" />}
+            >
+              {user.team && (
+                <MenuItem
+                  className="sidebar-font-submenu"
+                  component={<Link to="/people/team-members" />}
+                  style={{
+                    borderLeft: getBorderLeft("/people/team-members"),
+                    color: getColor("/people/team-members"),
+                  }}
+                >
+                  Team Members
+                </MenuItem>
+              )}
+              {user.campaign && (
+                <MenuItem
+                  className="sidebar-font-menu"
+                  component={<Link to="/campaigns/list" />}
+                  style={{
+                    borderLeft: getBorderLeft("/campaigns/list"),
+                    color: getColor("/campaigns/list"),
+                    // borderRadius: getBorderRadius("#"),
+                  }}
+                >
+                  Campaigns(Push notifications)
+                </MenuItem>
+              )}
+            </SubMenu>
+          ) : null}
           {/* student */}
 
           {/* <SubMenu

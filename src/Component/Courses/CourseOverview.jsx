@@ -181,42 +181,42 @@ function CourseOverview() {
 
   const updateCourse = async (e) => {
     e.preventDefault();
-    if (
-      !courseTitle ||
-      // !newCourse.thumbnailImage ||
-      !price ||
-      !durationType ||
-      !validity ||
-      !validityPeriod
-    ) {
-      alert("please fill all fields");
-    } else {
-      formData.append("courseName", courseTitle);
-      formData.append("courseDescription", courseDescription);
-      formData.append("freeMaterialVideo", freematerialVideo);
-      formData.append("freeMaterialDocs", freeMaterialDocs);
-      formData.append("materialDocsId", materialDocsId);
-      formData.append("materialVideoId", materialVideoId);
-      formData.append("durationType", durationType);
-      formData.append("validity", validity);
-      formData.append("validityPeriod", validityPeriod);
-      formData.append("price", price);
-      formData.append("discount", discount);
-      formData.append("effectivePrice", effectivePrice);
-      formData.append("thumbnailImage", thumbnailImage);
+    // if (
+    //   !courseTitle ||
+    //   // !newCourse.thumbnailImage ||
+    //   !price ||
+    //   !durationType ||
+    //   !validity ||
+    //   !validityPeriod
+    // ) {
+    //   alert("please fill all fields");
+    // } else {
+    formData.append("courseName", courseTitle);
+    formData.append("courseDescription", courseDescription);
+    formData.append("freeMaterialVideo", freematerialVideo);
+    formData.append("freeMaterialDocs", freeMaterialDocs);
+    formData.append("materialDocsId", materialDocsId);
+    formData.append("materialVideoId", materialVideoId);
+    formData.append("durationType", durationType);
+    formData.append("validity", validity);
+    formData.append("validityPeriod", validityPeriod);
+    formData.append("price", price);
+    formData.append("discount", discount);
+    formData.append("effectivePrice", effectivePrice);
+    formData.append("thumbnailImage", thumbnailImage);
 
-      try {
-        const response = await putFormData(
-          `${apiUrl.UPDATE_COURSE}${courseData._id}`,
-          formData
-        );
-        console.log("put Request Success:", response);
-        alert("Added");
-        window.location.assign("/courses/course-list");
-      } catch (error) {
-        console.error("Error:", error);
-      }
+    try {
+      const response = await putFormData(
+        `${apiUrl.UPDATE_COURSE}${courseData._id}`,
+        formData
+      );
+      console.log("put Request Success:", response);
+      alert("Added");
+      window.location.assign("/courses/course-list");
+    } catch (error) {
+      console.error("Error:", error);
     }
+    // }
   };
 
   const makeCourseFeatured = async (id) => {
@@ -379,7 +379,7 @@ function CourseOverview() {
                   onChange={(e) => setCourseDescription(e.target.value)}
                 />
               </div>
-              <div
+              {/* <div
                 className="mt-2 mb-2"
                 style={{ border: "1px dashed #e4e6e8" }}
               ></div>
@@ -404,15 +404,7 @@ function CourseOverview() {
                         <TextField {...params} label="Select documents" />
                       )}
                       onChange={(e, newValue) => handleDoc(e, newValue)}
-                    />
-
-                    {/* <a
-                      className="course-lable-title"
-                      href={`${apiUrl.IMAGEURL}/documents/${getCourseDocumentObj[0]?.documentImage}`}
-                      target="_blank"
-                    >
-                      {courseData.freeMaterialDocs}
-                    </a> */}
+                    /> 
                   </div>
                   <div className="col-6">
                     <label>
@@ -432,7 +424,7 @@ function CourseOverview() {
                     />
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               <div
                 className="mb-3"

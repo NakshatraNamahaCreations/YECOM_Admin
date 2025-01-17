@@ -20,6 +20,7 @@ import {
 import { BiSolidDiscount } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import { RxSlash } from "react-icons/rx";
+import axios from "axios";
 
 function TeamMember() {
   const styles = {
@@ -50,9 +51,10 @@ function TeamMember() {
     },
     root01698: {
       // width: "256px",
+      padding: 5,
       margin: "auto",
       display: "grid",
-      gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr",
+      // gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr",
       //  "1fr  / repeat(4, minmax(0, 10fr)) ",
       gap: "10px",
       // gridTemplateColumns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -77,17 +79,22 @@ function TeamMember() {
   };
   const handleClosingCanvas = () => setShowUser(false);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
   const fetchData = async () => {
     try {
-      const teamRes = await getData(apiUrl.GET_ALL_TEAMMEMBER);
-      setAllMembers(teamRes.data);
+      const teamRes = await axios.get(
+        // "http://localhost:8082/api/team/getallteammembers"
+        `${apiUrl.BASEURL}${apiUrl.GET_ALL_TEAMMEMBER}`
+      );
+      console.log("team list:", teamRes);
+
+      setAllMembers(teamRes.data.data);
     } catch (error) {
       console.error("Error:", error);
     }
   };
+  useEffect(() => {
+    fetchData();
+  }, []);
   const deleteMember = async (member) => {
     try {
       const res = await deleteData(`${apiUrl.DETELE_TEAMMEMBER}${member}`);
@@ -102,7 +109,7 @@ function TeamMember() {
     }
   };
 
-  console.log("openCanvas", openCanvas);
+  // console.log("openCanvas", openCanvas);
   const columns = [
     {
       name: "Member name",
@@ -119,7 +126,8 @@ function TeamMember() {
           >
             {row.name}
           </div>
-          <div>{row.phoneNumber}</div>
+          <div>{row.email}</div>
+          <div>{row.password}</div>
         </>
       ),
       sortable: true,
@@ -129,75 +137,53 @@ function TeamMember() {
       selector: (row) => (
         <div style={styles.root01698}>
           <div style={styles.iconCont0199}>
-            <PiGlobeDuotone
-              size={20}
-              color={row.website ? "#34a32d" : "#E0E0E0"}
-              title="Website"
-            />
+            <div style={{ color: row.course ? "black" : "#9e9e9e" }}>
+              My Course
+            </div>
           </div>
           <div style={styles.iconCont0199}>
-            <PiFlagBannerDuotone
-              size={20}
-              color={row.banner ? "#34a32d" : "#E0E0E0"}
-              title="Banner"
-            />
+            <div style={{ color: row.banner ? "black" : "#9e9e9e" }}>
+              Banners
+            </div>
           </div>
           <div style={styles.iconCont0199}>
-            <PiChatTeardropDotsDuotone
-              size={20}
-              color={row.chat ? "#34a32d" : "#E0E0E0"}
-              title="Chat"
-            />
+            <div style={{ color: row.youtubeVideo ? "black" : "#9e9e9e" }}>
+              Youtube
+            </div>
           </div>
           <div style={styles.iconCont0199}>
-            <BiSolidDiscount
-              size={20}
-              color={row.coupon ? "#34a32d" : "#E0E0E0"}
-              title="Coupon"
-            />
+            <div style={{ color: row.broadcast ? "black" : "#9e9e9e" }}>
+              Broadcast
+            </div>
           </div>
           <div style={styles.iconCont0199}>
-            <PiUserCircleDuotone
-              size={20}
-              color={row.user ? "#34a32d" : "#E0E0E0"}
-              title="User"
-            />
+            <div style={{ color: row.payment ? "black" : "#9e9e9e" }}>
+              Payment
+            </div>
           </div>
           <div style={styles.iconCont0199}>
-            <PiUsersThreeDuotone
-              size={20}
-              color={row.team ? "#34a32d" : "#E0E0E0"}
-              title="Team"
-            />
+            <div style={{ color: row.tryToBook ? "black" : "#9e9e9e" }}>
+              Try to Booking
+            </div>
           </div>
           <div style={styles.iconCont0199}>
-            <PiBookDuotone
-              size={20}
-              color={row.freeMaterial ? "#34a32d" : "#E0E0E0"}
-              title="Free Study Material"
-            />
+            <div style={{ color: row.chat ? "black" : "#9e9e9e" }}>Chat</div>
           </div>
           <div style={styles.iconCont0199}>
-            <PiSpeakerSimpleHighDuotone
-              size={20}
-              color={row.campaign ? "#34a32d" : "#E0E0E0"}
-              title="Campaign"
-            />
+            <div style={{ color: row.pricing ? "black" : "#9e9e9e" }}>
+              Pricing
+            </div>
           </div>
           <div style={styles.iconCont0199}>
-            <PiBookOpenDuotone
-              size={20}
-              color={row.course ? "#34a32d" : "#E0E0E0"}
-              title="Course"
-            />
+            <div style={{ color: row.team ? "black" : "#9e9e9e" }}>
+              Team Members
+            </div>
           </div>
-          {/* <div style={styles.iconCont0199}>
-            <PiPathDuotone
-              size={20}
-              color={row.selfService ? "#34a32d" : "#E0E0E0"}
-              title="Self Service"
-            />
-          </div> */}
+          <div style={styles.iconCont0199}>
+            <div style={{ color: row.campaign ? "black" : "#9e9e9e" }}>
+              Campaign
+            </div>
+          </div>
         </div>
       ),
       sortable: true,

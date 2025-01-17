@@ -41,6 +41,7 @@ function MyCourse() {
   };
   const Navigate = useNavigate();
   const [allCourse, setAllCourse] = useState([]);
+  const [searchCourse, setSearchCourse] = useState("");
 
   useEffect(() => {
     fetchData();
@@ -56,7 +57,11 @@ function MyCourse() {
       console.error("Error:", error);
     }
   };
-  console.log("allCourse", allCourse);
+  // console.log("allCourse", allCourse);
+
+  const filterCourse = allCourse.filter((course) =>
+    course.courseName.toLowerCase().includes(searchCourse)
+  );
 
   const navigateToCourseOverview = (course) => {
     // Navigate(
@@ -85,6 +90,7 @@ function MyCourse() {
             name="search"
             placeholder="Search.."
             style={styles.inputStyle}
+            onChange={(e) => setSearchCourse(e.target.value)}
           />
         </div>
         <div className="">
@@ -124,7 +130,7 @@ function MyCourse() {
             </div>
           ) : (
             <>
-              {allCourse.map((ele, index) => (
+              {filterCourse.map((ele, index) => (
                 <div
                   className="col-md-3 mb-4"
                   key={index}
