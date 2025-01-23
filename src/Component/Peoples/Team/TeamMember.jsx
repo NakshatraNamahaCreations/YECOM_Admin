@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../style/users.css";
 import DataTable from "react-data-table-component";
-import { Offcanvas } from "react-bootstrap";
+import { Offcanvas, Modal, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaRegPenToSquare } from "react-icons/fa6";
 import { deleteData, getData } from "../../../Api-Service/apiHelper";
@@ -21,8 +21,29 @@ import { BiSolidDiscount } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import { RxSlash } from "react-icons/rx";
 import axios from "axios";
+import { postData } from "../../../Api-Service/apiHelper";
 
 function TeamMember() {
+  const [showModal, setShowModal] = useState(false);
+  const [selectedMember, setSelectedMember] = useState(null);
+  const [updatedMember, setUpdatedMember] = useState({
+    name: "",
+    email: "",
+    password: "",
+    permissions: {
+      course: false,
+      banner: false,
+      youtubeVideo: false,
+      broadcast: false,
+      payment: false,
+      tryToBook: false,
+      chat: false,
+      pricing: false,
+      campaign: false,
+      team: false,
+    },
+  });
+
   const styles = {
     inputStyle: {
       width: "20em",
@@ -82,7 +103,7 @@ function TeamMember() {
   const fetchData = async () => {
     try {
       const teamRes = await axios.get(
-        // "http://localhost:8082/api/team/getallteammembers"
+        // "https://api.proleverageadmin.in/api/team/getallteammembers"
         `${apiUrl.BASEURL}${apiUrl.GET_ALL_TEAMMEMBER}`
       );
       console.log("team list:", teamRes);
@@ -109,7 +130,83 @@ function TeamMember() {
     }
   };
 
-  // console.log("openCanvas", openCanvas);
+  const handleEdit = (member) => {
+    setSelectedMember(member);
+    setUpdatedMember({
+      ...member,
+      permissions: {
+        course: member.course || false,
+        banner: member.banner || false,
+        youtubeVideo: member.youtubeVideo || false,
+        broadcast: member.broadcast || false,
+        payment: member.payment || false,
+        tryToBook: member.tryToBook || false,
+        chat: member.chat || false,
+        pricing: member.pricing || false,
+        campaign: member.campaign || false,
+        team: member.team || false,
+      },
+    });
+    setShowModal(true);
+  };
+
+  // const handleSave = async () => {
+  //   try {
+  //     const res = await axios.put(
+  //       `https://api.proleverageadmin.in/api/team/updateteammember/${selectedMember._id}`,
+  //       updatedMember
+  //     );
+  //     if (res) {
+  //       alert("Member updated successfully");
+  //       setShowModal(false);
+  //       fetchData();
+  //     }
+  //   } catch (error) {
+  //     console.error("Error updating member:", error);
+  //   }
+  // };
+
+  const handleSave = async () => {
+    try {
+      // Flatten the permissions object into the main object
+      const payload = {
+        ...updatedMember,
+        ...updatedMember.permissions, // Spread permissions as individual fields
+      };
+      delete payload.permissions; // Remove the nested permissions object
+
+      const res = await axios.put(
+        `https://api.proleverageadmin.in/api/team/updateteammember/${selectedMember._id}`,
+        payload
+      );
+
+      if (res) {
+        alert("Member updated successfully");
+        setShowModal(false);
+        fetchData();
+      }
+    } catch (error) {
+      console.error("Error updating member:", error);
+    }
+  };
+
+  const handleChange = (field, value) => {
+    setUpdatedMember((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  const handlePermissionChange = (permissionKey) => {
+    setUpdatedMember((prev) => ({
+      ...prev,
+      permissions: {
+        ...prev.permissions,
+        [permissionKey]: !prev.permissions[permissionKey],
+      },
+    }));
+  };
+
   const columns = [
     {
       name: "Member name",
@@ -201,14 +298,19 @@ function TeamMember() {
             style={{
               display: "flex",
             }}
+            // onClick={() => deleteMember(row._id)}
             // onClick={() => handleOpeningCanvas(row)}
           >
-            {/* <div style={{ cursor: "pointer" }} title="Edit">
+            <div
+              style={{ cursor: "pointer" }}
+              title="Edit"
+              onClick={() => handleEdit(row)}
+            >
               <FaRegPenToSquare size={16} color="#00ade7" />
             </div>
             <div>
               <RxSlash size={16} />
-            </div> */}
+            </div>
             <div
               style={{ cursor: "pointer" }}
               title="Delete"
@@ -366,6 +468,90 @@ function TeamMember() {
           </div>
         </Offcanvas.Body>
       </Offcanvas>
+
+      {/* modal */}
+      {showModal && (
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title>Edit Team Member</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div>
+              <label>Name:</label>
+              <input
+                type="text"
+                className="form-control"
+                value={updatedMember.name}
+                onChange={(e) => handleChange("name", e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Email:</label>
+              <input
+                type="email"
+                className="form-control"
+                value={updatedMember.email}
+                onChange={(e) => handleChange("email", e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Password:</label>
+              <input
+                type="password"
+                className="form-control"
+                value={updatedMember.password}
+                onChange={(e) => handleChange("password", e.target.value)}
+              />
+            </div>
+            <div>
+              <label>Permissions:</label>
+              <div>
+                {Object.keys(updatedMember.permissions).map((permissionKey) => (
+                  <div
+                    key={permissionKey}
+                    className="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2"
+                  >
+                    <div className="textSubText-0-1-183">
+                      <div className="toggleHeading-0-1-178 undefined">
+                        <div
+                          className="permissionIconTextWrap-0-1-172"
+                          style={{ fontSize: "15px" }}
+                        >
+                          <div className="textWrapper-0-1-176">
+                            <span>
+                              <div>
+                                {permissionKey.charAt(0).toUpperCase() +
+                                  permissionKey.slice(1)}
+                              </div>
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="medium-0-1-180">
+                      <div className="ui fitted toggle checkbox undefined">
+                        <input
+                          type="checkbox"
+                          checked={updatedMember.permissions[permissionKey]}
+                          onChange={() => handlePermissionChange(permissionKey)}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => setShowModal(false)}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleSave}>
+              Save Changes
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      )}
     </div>
   );
 }

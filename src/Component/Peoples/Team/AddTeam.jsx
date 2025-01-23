@@ -35,6 +35,7 @@ function AddTeam() {
   const [campaign, setCampaign] = useState(false);
   const [course, setCourse] = useState(false);
   const [selfService, setSelfService] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const addTeamMember = async () => {
     if (!name || !password) {
@@ -109,29 +110,6 @@ function AddTeam() {
             <div class="label-0-1-733">
               <div class="labelText-0-1-734">Permissions</div>
               <div className="row">
-                {/* <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
-                  <div class="textSubText-0-1-183">
-                    <div class="toggleHeading-0-1-178 undefined">
-                      <div class="permissionIconTextWrap-0-1-172" style={{fontSize:"16px"}}>
-                       
-                        <div class="textWrapper-0-1-176">
-                          <span>
-                            <div>Website</div>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="medium-0-1-180">
-                    <div class="ui fitted toggle checkbox undefined">
-                      <input
-                        type="checkbox"
-                        checked={website}
-                        onChange={(e) => setWebsite(!website)}
-                      />
-                    </div>
-                  </div>
-                </div> */}
                 <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
                   <div class="textSubText-0-1-183">
                     <div class="toggleHeading-0-1-178 undefined">
@@ -333,50 +311,7 @@ function AddTeam() {
                     </div>
                   </div>
                 </div>
-                {/* <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
-                  <div class="textSubText-0-1-183">
-                    <div class="toggleHeading-0-1-178 undefined">
-                      <div class="permissionIconTextWrap-0-1-172" style={{fontSize:"16px"}}>
-                        <div class="textWrapper-0-1-176">
-                          <span>
-                            <div>Coupon</div>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="medium-0-1-180">
-                    <div class="ui fitted toggle checkbox undefined ">
-                      <input
-                        type="checkbox"
-                        checked={coupon}
-                        onChange={(e) => setCoupon(!coupon)}
-                      />
-                    </div>
-                  </div>
-                </div> */}
-                {/* <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
-                  <div class="textSubText-0-1-183">
-                    <div class="toggleHeading-0-1-178 undefined">
-                      <div class="permissionIconTextWrap-0-1-172" style={{fontSize:"16px"}}>
-                        <div class="textWrapper-0-1-176">
-                          <span>
-                            <div>User</div>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="medium-0-1-180">
-                    <div class="ui fitted toggle checkbox undefined ">
-                      <input
-                        type="checkbox"
-                        checked={user}
-                        onChange={(e) => setUser(!user)}
-                      />
-                    </div>
-                  </div>
-                </div> */}
+
                 <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
                   <div class="textSubText-0-1-183">
                     <div class="toggleHeading-0-1-178 undefined">
@@ -402,28 +337,7 @@ function AddTeam() {
                     </div>
                   </div>
                 </div>
-                {/* <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
-                  <div class="textSubText-0-1-183">
-                    <div class="toggleHeading-0-1-178 undefined">
-                      <div class="permissionIconTextWrap-0-1-172" style={{fontSize:"16px"}}>
-                        <div class="textWrapper-0-1-176">
-                          <span>
-                            <div>Free Study Material</div>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="medium-0-1-180">
-                    <div class="ui fitted toggle checkbox undefined ">
-                      <input
-                        type="checkbox"
-                        checked={freeMaterial}
-                        onChange={(e) => setFreeMaterial(!freeMaterial)}
-                      />
-                    </div>
-                  </div>
-                </div> */}
+
                 <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
                   <div class="textSubText-0-1-183">
                     <div class="toggleHeading-0-1-178 undefined">
@@ -450,31 +364,6 @@ function AddTeam() {
                   </div>
                 </div>
               </div>
-              {/* <div class="toggleContainer-0-1-177 toggleBar-0-1-171">
-                <div class="textSubText-0-1-183">
-                  <div class="toggleHeading-0-1-178 undefined">
-                    <div class="permissionIconTextWrap-0-1-172" style={{fontSize:"16px"}}>
-                      <div class="permissionIconTextWrapIcon-0-1-173">
-                        <PiPathDuotone />
-                      </div>
-                      <div class="textWrapper-0-1-176">
-                        <span>
-                          <div>Self Service</div>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="medium-0-1-180">
-                  <div class="ui fitted toggle checkbox undefined ">
-                    <input
-                      type="checkbox"
-                      checked={selfService}
-                      onChange={(e) => setSelfService(!selfService)}
-                    />
-                  </div>
-                </div>
-              </div> */}
             </div>
           </div>
         </div>

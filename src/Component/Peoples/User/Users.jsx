@@ -1,20 +1,63 @@
 import React, { useEffect, useState } from "react";
 import "../style/users.css";
 import DataTable from "react-data-table-component";
-import { Offcanvas } from "react-bootstrap";
+import { Button, Modal, Offcanvas } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { getData } from "../../../Api-Service/apiHelper";
 import { apiUrl } from "../../../Api-Service/apiConstants";
 import moment from "moment";
+import axios from "axios";
 
 function Users() {
   const [openCanvas, setOpenCanvas] = useState({});
   const [showUsers, setShowUser] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
+  const [show, setShow] = useState(false);
+  const [searchLimit, setsearchLimit] = useState("");
+  const [selectedUserId, setSelectedUserId] = useState(null);
+  const [searchvalue, setsearchvalue] = useState("");
+
+  const handleClose = () => {
+    setShow(false);
+    setsearchLimit("");
+    setSelectedUserId(null); // Clear selected user
+  };
+  const handleShow = (userId) => {
+    setSelectedUserId(userId);
+    setShow(true);
+  };
   const handleOpeningCanvas = (row) => {
     setOpenCanvas(row);
     setShowUser(true);
   };
+
+  const updateSearchCount = async () => {
+    if (!searchLimit) {
+      alert("Please enter a valid search count.");
+      return;
+    }
+
+    try {
+      const data = { searchLimit: Number(searchLimit) }; // Ensure it's a number
+
+      const response = await axios.put(
+        `https://api.proleverageadmin.in/api/users/updateUsersearchcount/${selectedUserId}`,
+        data
+      );
+
+      if (response.status === 200) {
+        alert("Search count updated successfully.");
+        fetchData(); // Refresh the data
+        handleClose(); // Close the modal
+      } else {
+        alert("Failed to update search count. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error updating search count:", error);
+      alert("An unexpected error occurred. Please try again.");
+    }
+  };
+
   const handleClosingCanvas = () => setShowUser(false);
 
   useEffect(() => {
@@ -28,6 +71,19 @@ function Users() {
     } catch (error) {
       console.error("Error:", error);
     }
+  };
+
+  const filterusers = () => {
+    return allUsers.filter((data) => {
+      return (
+        (data.username &&
+          data.username.toLowerCase().includes(searchvalue.toLowerCase())) ||
+        (data.phoneNumber &&
+          data.phoneNumber.toString().includes(searchvalue)) ||
+        (data.email &&
+          data.email.toLowerCase().includes(searchvalue.toLowerCase()))
+      );
+    });
   };
 
   // both working for continue watching and purchase course
@@ -74,30 +130,40 @@ function Users() {
 
   const columns = [
     {
-      name: "User Info",
-      selector: (row) => (
-        <>
-          <div
-            style={{
-              display: "flex",
-            }}
-            onClick={() => handleOpeningCanvas(row)}
-          >
-            <div>
-              {/* <img
-                src={`${apiUrl.IMAGEURL}/user/${row.profilePicture}`}
-                alt=""
-                style={styles.userProfilePic}
-              /> */}
-            </div>
-            <div>
-              <div className="name-0-1-582">{row.name}</div>
-              <div className="number-0-1-583">{row.phoneNumber}</div>
-            </div>
-          </div>
-          <div></div>
-        </>
-      ),
+      name: "User Name",
+      selector: (row) => row.username,
+      // <>
+      //   <div
+      //     style={{
+      //       display: "flex",
+      //     }}
+      //     onClick={() => handleOpeningCanvas(row)}
+      //   >
+      //     <div>
+      //       {/* <img
+      //         src={`${apiUrl.IMAGEURL}/user/${row.profilePicture}`}
+      //         alt=""
+      //         style={styles.userProfilePic}
+      //       /> */}
+      //     </div>
+      //     <div>
+      //       <div className="name-0-1-582">{row.username}</div>
+      //       <div className="number-0-1-583">{row.phoneNumber}</div>
+      //       <div className="number-0-1-583">{row.email}</div>
+      //     </div>
+      //   </div>
+      //   <div></div>
+      // </>
+      sortable: true,
+    },
+    {
+      name: "Email",
+      selector: (row) => row.email,
+      sortable: true,
+    },
+    {
+      name: "Phone Number",
+      selector: (row) => row.phoneNumber,
       sortable: true,
     },
     {
@@ -110,11 +176,19 @@ function Users() {
     //   selector: (row) => "",
     //   sortable: true,
     // },
-    // {
-    //   name: " Action",
-    //   selector: (row) => row.year,
-    //   sortable: true,
-    // },
+    {
+      name: " Action",
+      selector: (row) => (
+        <div className="d-flex">
+          <i
+            onClick={() => handleShow(row._id)}
+            className="fa-solid fa-pen-to-square"
+            style={{ color: "red", cursor: "pointer", fontSize: "17px" }}
+          ></i>
+        </div>
+      ),
+      sortable: true,
+    },
   ];
   const styles = {
     inputStyle: {
@@ -150,6 +224,7 @@ function Users() {
     },
   };
   console.log("openCanvas", openCanvas);
+  console.log("allUsers", allUsers);
   return (
     <div className="mt-3">
       <div className="d-flex justify-content-between mt-3">
@@ -166,6 +241,8 @@ function Users() {
             type="text"
             name="search"
             placeholder="Search.."
+            value={searchvalue}
+            onChange={(e) => setsearchvalue(e.target.value)}
             style={styles.inputStyle}
           />
         </div>
@@ -179,8 +256,12 @@ function Users() {
         </div> */}
       </div>
       {/* Table */}
-      <div className="TableHeaderContainer-0-1-672" style={{width:"50%"}} >
-        <DataTable columns={columns} data={allUsers} defaultSortFieldId={1} />
+      <div className="TableHeaderContainer-0-1-672" style={{ width: "100%" }}>
+        <DataTable
+          columns={columns}
+          data={filterusers()}
+          defaultSortFieldId={1}
+        />
       </div>
       {/* open canvas */}
       <Offcanvas show={showUsers} onHide={handleClosingCanvas} placement="end">
@@ -276,6 +357,33 @@ function Users() {
           </div>
         </Offcanvas.Body>
       </Offcanvas>
+
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Add Search Count</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="">Search Cout</div>
+          <input
+            type="tel"
+            className="mt-1"
+            value={searchLimit}
+            onChange={(e) => setsearchLimit(e.target.value)}
+            style={{
+              border: "1px solid lightgrey",
+              paddingLeft: "15px",
+              borderRadius: "5px",
+              height: "35px",
+              outline: "none",
+            }}
+          />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={updateSearchCount}>
+            Add
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

@@ -56,6 +56,7 @@ import Payments from "./Component/Peoples/User/Payments";
 import TryToBooking from "./Component/Peoples/User/TryToBooking";
 import Pricing from "./Component/Content/Pricing";
 import AddContent from "./Component/Courses/AddContent";
+import Paymentkey from "./Component/Peoples/User/Paymentkey";
 
 function App() {
   return (
@@ -447,6 +448,20 @@ function App() {
                 <>
                   <Header />
                   <Pricing />
+                </>
+              }
+            />
+          }
+        />
+
+        <Route
+          path="/paymentkey"
+          element={
+            <Layout
+              Children={
+                <>
+                  <Header />
+                  <Paymentkey />
                 </>
               }
             />

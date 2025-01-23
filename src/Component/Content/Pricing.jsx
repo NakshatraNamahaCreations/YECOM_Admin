@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal, Offcanvas } from "react-bootstrap";
+import { Button, Offcanvas } from "react-bootstrap";
 import DataTable from "react-data-table-component";
-import { manageBannerStyle as styles } from "../../Styles/JSXStyles";
-import { apiUrl } from "../../Api-Service/apiConstants";
-import { deleteData, getData, postData } from "../../Api-Service/apiHelper";
 import axios from "axios";
+import { apiUrl } from "../../Api-Service/apiConstants";
+
 function Pricing() {
   const [allPlanList, setAllPlanList] = useState([]);
-  const [show, setShow] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState(null);
+
+  // States for Plan Details
   const [planName, setPlanName] = useState("");
   const [priceDescription, setPriceDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -15,30 +18,74 @@ function Pricing() {
   const [searchCount, setSearchCount] = useState("");
   const [validPeriod, setValidPeriod] = useState("");
   const [noOfPeriod, setNoOfPeriod] = useState("");
+  const [searchvalue, setsearchvalue] = useState("");
 
-  const handleOpenModal = () => {
-    setShow(true);
-  };
-
+  // Fetch all plans
   const fetchData = async () => {
     try {
       const planRes = await axios.get(`${apiUrl.BASEURL}${apiUrl.GET_PLAN}`);
       if (planRes.status === 200) {
-        console.log("planRes", planRes);
         setAllPlanList(planRes.data.data);
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error fetching plans:", error);
     }
   };
+
+  console.log("allPlanList", allPlanList);
 
   useEffect(() => {
     fetchData();
   }, []);
 
-  const AddPlan = async () => {
+  const filterPlans = () => {
+    return allPlanList.filter((plan) => {
+      return (
+        plan.planName.toLowerCase().includes(searchvalue.toLowerCase()) ||
+        plan.price.toString().includes(searchvalue) ||
+        plan.priceDescription
+          .toLowerCase()
+          .includes(searchvalue.toLowerCase()) ||
+        plan.noOfPeriod.toString().includes(searchvalue) ||
+        plan.validPeriod.toLowerCase().includes(searchvalue.toLowerCase()) ||
+        plan.searchCount.toString().includes(searchvalue)
+      );
+    });
+  };
+
+  // Reset input fields
+  const resetFields = () => {
+    setPlanName("");
+    setPriceDescription("");
+    setImageUrl("");
+    setPrice("");
+    setSearchCount("");
+    setValidPeriod("");
+    setNoOfPeriod("");
+  };
+
+  // Open Add Plan Modal
+  const handleOpenAddModal = () => {
+    resetFields();
+    setShowAddModal(true);
+  };
+
+  // Open Edit Plan Modal
+  const handleOpenEditModal = (plan) => {
+    setSelectedPlan(plan);
+    setPlanName(plan.planName);
+    setPriceDescription(plan.priceDescription);
+    setImageUrl(plan.imagelink);
+    setPrice(plan.price);
+    setSearchCount(plan.searchCount);
+    setValidPeriod(plan.validPeriod);
+    setNoOfPeriod(plan.noOfPeriod);
+    setShowEditModal(true);
+  };
+
+  // Add Plan
+  const addPlan = async () => {
     try {
-      // Validate required fields
       if (
         !planName ||
         !price ||
@@ -50,45 +97,90 @@ function Pricing() {
         alert("Please fill in all required fields.");
         return;
       }
+
       const data = {
-        planName: planName,
-        price: price,
-        priceDescription: priceDescription,
-        validPeriod: validPeriod,
-        noOfPeriod: noOfPeriod,
-        searchCount: searchCount,
+        planName,
+        price,
+        priceDescription,
+        validPeriod,
+        noOfPeriod,
+        searchCount,
         imagelink: imageUrl,
       };
-      const response = await postData(apiUrl.ADD_PLAN, data);
 
-      if (response) {
-        alert("Plan Added Successfully");
-        window.location.reload();
-      } else {
-        alert(`Failed to add plan: ${data.message || "Unknown error"}`);
+      const response = await axios.post(
+        `${apiUrl.BASEURL}${apiUrl.ADD_PLAN}`,
+        data
+      );
+      if (response.status === 200) {
+        alert("Plan added successfully");
+        fetchData(); // Refresh the table
+        setShowAddModal(false); // Close modal
       }
     } catch (error) {
-      console.error("Error while adding plan:", error);
-      alert("An unexpected error occurred. Please try again.");
+      console.error("Error adding plan:", error);
+      alert("Failed to add plan.");
     }
   };
 
-  const handleDeletObj = async (id) => {
+  // Edit Plan
+  const editPlan = async () => {
+    try {
+      if (
+        !planName ||
+        !price ||
+        !validPeriod ||
+        !noOfPeriod ||
+        !searchCount ||
+        !imageUrl
+      ) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+
+      const data = {
+        planName,
+        price,
+        priceDescription,
+        validPeriod,
+        noOfPeriod,
+        searchCount,
+        imagelink: imageUrl,
+      };
+
+      const response = await axios.put(
+        `${apiUrl.BASEURL}/plans/updatedplan/${selectedPlan._id}`,
+        data
+      );
+
+      if (response.status === 200) {
+        alert("Plan updated successfully");
+        fetchData(); // Refresh the table
+        setShowEditModal(false); // Close modal
+      }
+    } catch (error) {
+      console.error("Error updating plan:", error);
+      alert("Failed to update plan.");
+    }
+  };
+
+  // Delete Plan
+  const deletePlan = async (id) => {
     try {
       const response = await axios.post(
         `${apiUrl.BASEURL}${apiUrl.DELETE_PLAN}${id}`
       );
       if (response.status === 200) {
-        alert("Plan Deleted Successfully");
-        window.location.reload();
-      } else {
-        alert(`Failed to delete plan: Unknown error`);
+        alert("Plan deleted successfully");
+        fetchData(); // Refresh the table
       }
     } catch (error) {
-      console.error("Error while deleting plan:", error);
+      console.error("Error deleting plan:", error);
+      alert("Failed to delete plan.");
     }
   };
 
+  // Table Columns
   const columns = [
     {
       name: "Plan Name",
@@ -101,7 +193,11 @@ function Pricing() {
     {
       name: "Image",
       selector: (row) => (
-        <img src={row.imagelink} alt="" class="iconImage-0-1-649" />
+        <img
+          src={row.imagelink}
+          alt=""
+          style={{ width: "50px", height: "50px" }}
+        />
       ),
     },
     {
@@ -117,19 +213,23 @@ function Pricing() {
       selector: (row) => row.searchCount,
     },
     {
-      name: "Action",
+      name: "Actions",
       selector: (row) => (
-        <div style={{ margin: "5px" }}>
-          <div
-            style={{ cursor: "Pointer" }}
-            onClick={() => handleDeletObj(row._id)}
+        <div style={{ display: "flex", gap: "10px" }}>
+          <Button
+            variant="warning"
+            size="sm"
+            onClick={() => handleOpenEditModal(row)}
           >
-            <img
-              src="https://classplusapp.com/diy/assets/trash-2-db8990c1..svg"
-              alt=""
-              class="iconImage-0-1-649"
-            />
-          </div>
+            Edit
+          </Button>
+          <Button
+            variant="danger"
+            size="sm"
+            onClick={() => deletePlan(row._id)}
+          >
+            Delete
+          </Button>
         </div>
       ),
     },
@@ -137,178 +237,182 @@ function Pricing() {
 
   return (
     <div>
-      <div>
-        <Button className="px-5 py-2" variant="info" onClick={handleOpenModal}>
-          Add
-        </Button>
-      </div>
+      <Button variant="info" onClick={handleOpenAddModal} className="mb-4">
+        Add Plan
+      </Button>{" "}
       <br />
-      <DataTable columns={columns} data={allPlanList} defaultSortFieldId={1} />
-      <Offcanvas show={show} onHide={() => setShow(false)} placement="end">
+      <input
+        type="text"
+        className="mb-3"
+        placeholder="search..."
+        value={searchvalue}
+        onChange={(e) => setsearchvalue(e.target.value)}
+        style={{
+          border: "1px solid grey",
+          borderRadius: "5px",
+          outline: "none",
+          height: "35px",
+          paddingLeft: "15px",
+        }}
+      />
+      <DataTable
+        columns={columns}
+        data={filterPlans()}
+        defaultSortFieldId={1}
+      />
+      {/* Add Plan Modal */}
+      <Offcanvas
+        show={showAddModal}
+        onHide={() => setShowAddModal(false)}
+        placement="end"
+      >
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title> Add Plan</Offcanvas.Title>
+          <Offcanvas.Title>Add Plan</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
-          <div>
-            <div style={{ fontSize: "15px" }}>
-              <b>
-                Plan Name <span style={{ color: "Red" }}>*</span>{" "}
-              </b>
-            </div>
-            <input
-              className="mt-2 mb-2"
-              type="text"
-              style={{
-                border: "1px solid rgb(216, 224, 240)",
-                borderRadius: "5px",
-                outline: "none",
-                padding: "6px",
-                fontSize: "15px",
-                width: "100%",
-              }}
-              onChange={(e) => setPlanName(e.target.value)}
-            />
-          </div>
-          <div>
-            <div style={{ fontSize: "15px" }}>
-              <b>Plan Description</b>
-            </div>
-            <textarea
-              className="mt-2 mb-2"
-              type="text"
-              style={{
-                border: "1px solid rgb(216, 224, 240)",
-                borderRadius: "5px",
-                outline: "none",
-                width: "100%",
-                padding: "6px",
-                fontSize: "15px",
-              }}
-              onChange={(e) => setPriceDescription(e.target.value)}
-            />
-          </div>
-          <div>
-            <div style={{ fontSize: "15px" }}>
-              <b>
-                Image URL <span style={{ color: "Red" }}>*</span>{" "}
-              </b>
-            </div>
-            <input
-              className="mt-2 mb-2"
-              type="text"
-              style={{
-                border: "1px solid rgb(216, 224, 240)",
-                borderRadius: "5px",
-                outline: "none",
-                padding: "6px",
-                fontSize: "15px",
-                width: "100%",
-              }}
-              onChange={(e) => setImageUrl(e.target.value)}
-            />
-          </div>
-          <div className="row me-0" style={{ flexDirection: "row" }}>
-            <div className="col-md-6">
-              <div style={{ fontSize: "15px" }}>
-                <b>
-                  Price <span style={{ color: "Red" }}>*</span>{" "}
-                </b>
-              </div>
-              <input
-                className="mt-2 mb-2"
-                type="number"
-                min={1}
-                style={{
-                  border: "1px solid rgb(216, 224, 240)",
-                  borderRadius: "5px",
-                  outline: "none",
-                  padding: "6px",
-                  fontSize: "15px",
-                  width: "100%",
-                }}
-                onChange={(e) => setPrice(e.target.value)}
-              />
-            </div>
-            <div className="col-md-6">
-              <div style={{ fontSize: "15px" }}>
-                <b>
-                  Search Count <span style={{ color: "Red" }}>*</span>{" "}
-                </b>
-              </div>
-              <input
-                className="mt-2 mb-2"
-                type="number"
-                min={1}
-                style={{
-                  border: "1px solid rgb(216, 224, 240)",
-                  borderRadius: "5px",
-                  outline: "none",
-                  padding: "6px",
-                  fontSize: "15px",
-                  width: "100%",
-                }}
-                onChange={(e) => setSearchCount(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="row me-0" style={{ flexDirection: "row" }}>
-            <div className="col-md-6">
-              <div style={{ fontSize: "15px" }}>
-                <b>
-                  Period <span style={{ color: "Red" }}>*</span>{" "}
-                </b>
-              </div>
-              <select
-                className="mt-2 mb-2"
-                style={{
-                  border: "1px solid rgb(216, 224, 240)",
-                  borderRadius: "5px",
-                  outline: "none",
-                  padding: "6px",
-                  fontSize: "15px",
-                  width: "100%",
-                }}
-                onChange={(e) => setValidPeriod(e.target.value)}
-              >
-                <option value="">---Select---</option>
-                <option value="Month">Monthly</option>
-                <option value="Year">Yearly</option>
-              </select>
-            </div>
-            {validPeriod !== "" && (
-              <div className="col-md-6">
-                <div style={{ fontSize: "15px" }}>
-                  <b>
-                    Number of {validPeriod}'s{" "}
-                    <span style={{ color: "Red" }}>*</span>{" "}
-                  </b>
-                </div>
-                <input
-                  className="mt-2 mb-2"
-                  type="number"
-                  min={1}
-                  style={{
-                    border: "1px solid rgb(216, 224, 240)",
-                    borderRadius: "5px",
-                    outline: "none",
-                    padding: "6px",
-                    fontSize: "15px",
-                    width: "100%",
-                  }}
-                  onChange={(e) => setNoOfPeriod(e.target.value)}
-                />
-              </div>
-            )}
-          </div>
-          <div className="row me-0 mt-2" style={{ flexDirection: "row" }}>
-            <div className="col-md-6">
-              <Button className="px-2 py-1" variant="info" onClick={AddPlan}>
-                Add Plan
-              </Button>
-            </div>
-          </div>
+          {/* Add Plan Form */}
+          <PlanForm
+            planName={planName}
+            setPlanName={setPlanName}
+            priceDescription={priceDescription}
+            setPriceDescription={setPriceDescription}
+            imageUrl={imageUrl}
+            setImageUrl={setImageUrl}
+            price={price}
+            setPrice={setPrice}
+            searchCount={searchCount}
+            setSearchCount={setSearchCount}
+            validPeriod={validPeriod}
+            setValidPeriod={setValidPeriod}
+            noOfPeriod={noOfPeriod}
+            setNoOfPeriod={setNoOfPeriod}
+          />
+          <Button variant="primary" className="mt-3" onClick={addPlan}>
+            Add Plan
+          </Button>
         </Offcanvas.Body>
       </Offcanvas>
+      {/* Edit Plan Modal */}
+      <Offcanvas
+        show={showEditModal}
+        onHide={() => setShowEditModal(false)}
+        placement="end"
+      >
+        <Offcanvas.Header closeButton>
+          <Offcanvas.Title>Edit Plan</Offcanvas.Title>
+        </Offcanvas.Header>
+        <Offcanvas.Body>
+          {/* Edit Plan Form */}
+          <PlanForm
+            planName={planName}
+            setPlanName={setPlanName}
+            priceDescription={priceDescription}
+            setPriceDescription={setPriceDescription}
+            imageUrl={imageUrl}
+            setImageUrl={setImageUrl}
+            price={price}
+            setPrice={setPrice}
+            searchCount={searchCount}
+            setSearchCount={setSearchCount}
+            validPeriod={validPeriod}
+            setValidPeriod={setValidPeriod}
+            noOfPeriod={noOfPeriod}
+            setNoOfPeriod={setNoOfPeriod}
+          />
+          <Button variant="primary" className="mt-3" onClick={editPlan}>
+            Update Plan
+          </Button>
+        </Offcanvas.Body>
+      </Offcanvas>
+    </div>
+  );
+}
+
+function PlanForm({
+  planName,
+  setPlanName,
+  priceDescription,
+  setPriceDescription,
+  imageUrl,
+  setImageUrl,
+  price,
+  setPrice,
+  searchCount,
+  setSearchCount,
+  validPeriod,
+  setValidPeriod,
+  noOfPeriod,
+  setNoOfPeriod,
+}) {
+  return (
+    <div>
+      <div>
+        <label>Plan Name *</label>
+        <input
+          type="text"
+          className="form-control"
+          value={planName}
+          onChange={(e) => setPlanName(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Plan Description</label>
+        <textarea
+          className="form-control"
+          value={priceDescription}
+          onChange={(e) => setPriceDescription(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Image URL *</label>
+        <input
+          type="text"
+          className="form-control"
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Price *</label>
+        <input
+          type="number"
+          className="form-control"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Search Count *</label>
+        <input
+          type="number"
+          className="form-control"
+          value={searchCount}
+          onChange={(e) => setSearchCount(e.target.value)}
+        />
+      </div>
+      <div>
+        <label>Valid Period *</label>
+        <select
+          className="form-control"
+          value={validPeriod}
+          onChange={(e) => setValidPeriod(e.target.value)}
+        >
+          <option value="">--- Select ---</option>
+          <option value="Month">Monthly</option>
+          <option value="Year">Yearly</option>
+        </select>
+      </div>
+      {validPeriod && (
+        <div>
+          <label>Number of {validPeriod} *</label>
+          <input
+            type="number"
+            className="form-control"
+            value={noOfPeriod}
+            onChange={(e) => setNoOfPeriod(e.target.value)}
+          />
+        </div>
+      )}
     </div>
   );
 }

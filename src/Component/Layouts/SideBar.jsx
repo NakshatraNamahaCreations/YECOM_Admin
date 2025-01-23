@@ -262,9 +262,9 @@ function SideBar() {
               Try to Booking
             </MenuItem>
           )}
-          {/* <SubMenu
+          <SubMenu
             className="sidebar-font-menu"
-            label="User"
+            label="People"
             icon={<MdCampaign className="sidebar-icons" />}
           >
             <MenuItem
@@ -272,12 +272,24 @@ function SideBar() {
               component={<Link to="/people/users" />}
               style={{
                 borderLeft: getBorderLeft("/people/users"),
-                color: getColor("/people/users"), 
+                color: getColor("/people/users"),
               }}
             >
               User List
             </MenuItem>
-            <MenuItem
+            {user.team && (
+              <MenuItem
+                className="sidebar-font-submenu"
+                component={<Link to="/people/team-members" />}
+                style={{
+                  borderLeft: getBorderLeft("/people/team-members"),
+                  color: getColor("/people/team-members"),
+                }}
+              >
+                Team Members
+              </MenuItem>
+            )}
+            {/* <MenuItem
               className="sidebar-font-menu"
               component={<Link to="/users/payments" />}
               style={{
@@ -287,8 +299,8 @@ function SideBar() {
               }}
             >
               Payments
-            </MenuItem>
-          </SubMenu> */}
+            </MenuItem> */}
+          </SubMenu>
           {/* chat================================ */}
           {user.chat && (
             <MenuItem
@@ -325,18 +337,6 @@ function SideBar() {
               label="Marketing"
               icon={<MdCampaign className="sidebar-icons" />}
             >
-              {user.team && (
-                <MenuItem
-                  className="sidebar-font-submenu"
-                  component={<Link to="/people/team-members" />}
-                  style={{
-                    borderLeft: getBorderLeft("/people/team-members"),
-                    color: getColor("/people/team-members"),
-                  }}
-                >
-                  Team Members
-                </MenuItem>
-              )}
               {user.campaign && (
                 <MenuItem
                   className="sidebar-font-menu"
@@ -366,6 +366,19 @@ function SideBar() {
               Add Students
             </MenuItem>
           </SubMenu> */}
+
+          <MenuItem
+            className="sidebar-font-menu"
+            component={<Link to="/paymentkey" />}
+            icon={<MdOutlinePayment className="sidebar-icons" />}
+            style={{
+              borderLeft: getBorderLeft("/paymentkey"),
+              color: getColor("/paymentkey"),
+              // borderRadius: getBorderRadius("#"),
+            }}
+          >
+            Paymentkey
+          </MenuItem>
 
           <MenuItem
             className="sidebar-font-menu"
