@@ -57,6 +57,7 @@ import TryToBooking from "./Component/Peoples/User/TryToBooking";
 import Pricing from "./Component/Content/Pricing";
 import AddContent from "./Component/Courses/AddContent";
 import Paymentkey from "./Component/Peoples/User/Paymentkey";
+import Userdetails from "./Component/Peoples/User/Userdetails";
 
 function App() {
   return (
@@ -327,6 +328,19 @@ function App() {
                 <>
                   <Header />
                   <Users />
+                </>
+              }
+            />
+          }
+        />
+        <Route
+          path="/people/usersdetails"
+          element={
+            <Layout
+              Children={
+                <>
+                  <Header />
+                  <Userdetails />
                 </>
               }
             />

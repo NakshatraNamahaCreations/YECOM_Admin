@@ -27,7 +27,7 @@ socket.on("receive-message", (message) => {
 });
 
 const ChatApp = () => {
-  const [step, setStep] = useState("register");
+  const [step, setStep] = useState("login");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -312,7 +312,7 @@ const ChatApp = () => {
 
   return (
     <div className="chat-container">
-      {step === "register" && (
+      {/* {step === "register" && (
         <div className="auth-form">
           <h2>Register</h2>
           <input
@@ -336,7 +336,7 @@ const ChatApp = () => {
             </span>
           </p>
         </div>
-      )}
+      )} */}
 
       {step === "login" && (
         <div className="auth-form">

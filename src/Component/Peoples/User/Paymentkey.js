@@ -225,7 +225,7 @@ function Paymentkey() {
       sortable: true,
     },
     {
-      name: "Reazorpay key_id",
+      name: "Razorpay key_id",
       selector: (row) => (
         <span style={{ fontFamily: "Poppins, sans-serif" }}>
           {row.reazorpaykey_id}
@@ -234,7 +234,7 @@ function Paymentkey() {
       sortable: true,
     },
     {
-      name: "Reazorpay secret_key",
+      name: "Razorpay secret_key",
       selector: (row) => (
         <span style={{ fontFamily: "Poppins, sans-serif" }}>
           {row.reazorpaykey_secret}
@@ -345,9 +345,7 @@ function Paymentkey() {
           </div>
 
           <div className="">
-            <div className="poppins-regular s_input_label">
-              Reazorpay key_id
-            </div>
+            <div className="poppins-regular s_input_label">Razorpay key_id</div>
             <input
               type="text"
               className="col-md-12 s_input_value poppins-regular"
@@ -358,7 +356,7 @@ function Paymentkey() {
 
           <div className="">
             <div className="poppins-regular s_input_label">
-              Reazorpay secret key
+              Razorpay secret key
             </div>
             <input
               type="text"
