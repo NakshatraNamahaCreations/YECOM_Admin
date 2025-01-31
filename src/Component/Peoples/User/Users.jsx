@@ -8,6 +8,44 @@ import { apiUrl } from "../../../Api-Service/apiConstants";
 import moment from "moment";
 import axios from "axios";
 
+// const convertToCSV = (data) => {
+//   const headers = [
+//     "User Name",
+//     "Email",
+//     "Phone Number",
+//     "Search Count",
+//     "Search Limit",
+//     "Date of Joining",
+//   ];
+//   const rows = data.map((user) => [
+//     `"${user.username}"`,
+//     `"${user.email}"`,
+//     `"${user.phoneNumber}"`,
+//     `"${user.searchcount}"`,
+//     `"${user.searchLimit}"`,
+//     `"${moment(user.createdAt).format("DD-MMM-YY")}"`,
+//   ]);
+
+//   const csvContent = [
+//     headers.join(","),
+//     ...rows.map((row) => row.join(",")),
+//   ].join("\n");
+//   return csvContent;
+// };
+
+// // Function to trigger CSV download
+// const downloadCSV = (data) => {
+//   const csvContent = convertToCSV(data);
+//   const blob = new Blob([csvContent], { type: "text/csv" });
+//   const url = URL.createObjectURL(blob);
+//   const link = document.createElement("a");
+//   link.href = url;
+//   link.download = "users_data.csv";
+//   document.body.appendChild(link);
+//   link.click();
+//   document.body.removeChild(link);
+// };
+
 function Users() {
   const [openCanvas, setOpenCanvas] = useState({});
   const [showUsers, setShowUser] = useState(false);
@@ -16,6 +54,8 @@ function Users() {
   const [searchLimit, setsearchLimit] = useState("");
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [searchvalue, setsearchvalue] = useState("");
+  const [paymentdata, setPaymentData] = useState([]);
+  const [allplans, setAllPlans] = useState([]);
 
   const handleClose = () => {
     setShow(false);
@@ -190,8 +230,192 @@ function Users() {
       marginRight: "12px",
     },
   };
+
+  useEffect(() => {
+    getAllPayment();
+    getAllPlans();
+  }, []);
+
+  const getAllPayment = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.proleverageadmin.in/api/payment/alluser"
+      );
+      if (response.status === 200) {
+        setPaymentData(response.data.allUsers);
+      }
+    } catch (error) {
+      console.warn(error);
+    }
+  };
+
+  const getAllPlans = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.proleverageadmin.in/api/plans/getallplan"
+      );
+      if (response.status === 200) {
+        setAllPlans(response.data.data);
+      }
+    } catch (error) {
+      console.warn(error);
+    }
+  };
+
+  console.log("allplans", allplans);
+  console.log("paymentdata", paymentdata);
+
   console.log("openCanvas", openCanvas);
   console.log("allUsers", allUsers);
+
+  // const generatePaymentReport = () => {
+  //   const mergedData = paymentdata
+  //     .map((payment) => {
+  //       const user = allUsers.find((u) => u._id === payment.userId);
+  //       if (!user) return null;
+
+  //       const plan = allplans.find((p) => p._id === payment.planId);
+
+  //       return {
+  //         username: user.username || "N/A",
+  //         email: user.email || "N/A",
+  //         phoneNumber: user.phoneNumber || "N/A",
+  //         orderId: payment.orderId || "N/A",
+  //         amount: payment.amount || "N/A",
+  //         currency: payment.currency || "N/A",
+  //         paymentStatus: payment.paymentStatus ? "Success" : "Failure",
+  //         planName: plan ? plan.planName : "No Plan",
+  //         planPrice: plan ? plan.price : "N/A",
+  //         searchCount: plan ? plan.searchCount : "N/A",
+  //         validPeriod: plan ? `${plan.noOfPeriod} ${plan.validPeriod}` : "N/A",
+  //         createdAt: moment(payment.createdAt).format("DD-MMM-YYYY"),
+  //       };
+  //     })
+  //     .filter(Boolean);
+
+  //   if (mergedData.length === 0) {
+  //     alert("No matching payment data found.");
+  //     return;
+  //   }
+
+  //   const headers = [
+  //     "User Name",
+  //     "Email",
+  //     "Phone Number",
+  //     "Order ID",
+  //     "Amount",
+  //     "Currency",
+  //     "Payment Status",
+  //     "Plan Name",
+  //     "Plan Price",
+  //     "Search Count",
+  //     "Validity",
+  //     "Date of Payment",
+  //   ];
+  //   const rows = mergedData.map((item) => Object.values(item));
+
+  //   const csvContent = [
+  //     headers.join(","),
+  //     ...rows.map((row) => row.join(",")),
+  //   ].join("\n");
+
+  //   const blob = new Blob([csvContent], { type: "text/csv" });
+  //   const url = URL.createObjectURL(blob);
+  //   const link = document.createElement("a");
+  //   link.href = url;
+  //   link.download = "User_Payment_Report.csv";
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
+
+  const generatePaymentReport = () => {
+    const mergedData = allUsers.map((user) => {
+      // Find matching payments for the user
+      const userPayments = paymentdata.filter(
+        (payment) => payment.userId === user._id
+      );
+
+      // If no payment, return user details with "No Payment" status
+      if (userPayments.length === 0) {
+        return {
+          username: user.username || "N/A",
+          email: user.email || "N/A",
+          phoneNumber: user.phoneNumber || "N/A",
+          orderId: "No Payment",
+          amount: "N/A",
+          currency: "N/A",
+          paymentStatus: "No Payment",
+          planName: "No Plan",
+          planPrice: "N/A",
+          searchCount: "N/A",
+          validPeriod: "N/A",
+          createdAt: moment(user.createdAt).format("DD-MMM-YYYY"),
+        };
+      }
+
+      // If user has multiple payments, return each payment as a separate entry
+      return userPayments.map((payment) => {
+        // Find the corresponding plan for the payment
+        const plan = allplans.find((p) => p._id === payment.planId);
+
+        return {
+          username: user.username || "N/A",
+          email: user.email || "N/A",
+          phoneNumber: user.phoneNumber || "N/A",
+          orderId: payment.orderId || "N/A",
+          amount: payment.amount || "N/A",
+          currency: payment.currency || "N/A",
+          paymentStatus: payment.paymentStatus ? "Success" : "Failure",
+          planName: plan ? plan.planName : "No Plan",
+          planPrice: plan ? plan.price : "N/A",
+          searchCount: plan ? plan.searchCount : "N/A",
+          validPeriod: plan ? `${plan.noOfPeriod} ${plan.validPeriod}` : "N/A",
+          createdAt: moment(payment.createdAt).format("DD-MMM-YYYY"),
+        };
+      });
+    });
+
+    // Flatten the array (handle users with multiple payments)
+    const flattenedData = mergedData.flat();
+
+    if (flattenedData.length === 0) {
+      alert("No data available.");
+      return;
+    }
+
+    // Convert data to CSV format
+    const headers = [
+      "User Name",
+      "Email",
+      "Phone Number",
+      "Order ID",
+      "Amount",
+      "Currency",
+      "Payment Status",
+      "Plan Name",
+      "Plan Price",
+      "Search Count",
+      "Validity",
+      "Date of Payment",
+    ];
+    const rows = flattenedData.map((item) => Object.values(item));
+
+    const csvContent = [
+      headers.join(","),
+      ...rows.map((row) => row.join(",")),
+    ].join("\n");
+
+    // Trigger file download
+    const blob = new Blob([csvContent], { type: "text/csv" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "User_Payment_Report.csv";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <div className="mt-3">
       <div className="d-flex justify-content-between mt-3">
@@ -214,12 +438,23 @@ function Users() {
           />
         </div>
       </div>
+
+      <div className="d-flex mb-3" style={{ justifyContent: "end" }}>
+        <button
+          className="btn btn-success"
+          // onClick={() => downloadCSV(allUsers)}
+          onClick={generatePaymentReport}
+        >
+          Download
+        </button>
+      </div>
+
       {/* Table */}
       <div className="TableHeaderContainer-0-1-672" style={{ width: "100%" }}>
         <DataTable
           columns={columns}
           data={filterusers()}
-          defaultSortFieldId={1}
+          // defaultSortFieldId={1}
         />
       </div>
 
