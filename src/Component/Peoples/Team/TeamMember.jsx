@@ -42,6 +42,7 @@ function TeamMember() {
       Marketing: false,
       Paymentkey: false,
       Coupon: false,
+      team: false,
     },
   });
 
@@ -146,6 +147,7 @@ function TeamMember() {
         Marketing: member.Marketing || false,
         Paymentkey: member.Paymentkey || false,
         Coupon: member.Coupon || false,
+        team: member.team || false,
       },
     });
     setShowModal(true);
@@ -281,6 +283,9 @@ function TeamMember() {
             <div style={{ color: row.Coupon ? "black" : "#9e9e9e" }}>
               Coupon
             </div>
+          </div>
+          <div style={styles.iconCont0199}>
+            <div style={{ color: row.team ? "black" : "#9e9e9e" }}>Team</div>
           </div>
         </div>
       ),

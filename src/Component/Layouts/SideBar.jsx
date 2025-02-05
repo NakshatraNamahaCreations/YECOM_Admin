@@ -175,18 +175,18 @@ function SideBar() {
               >
                 User List
               </MenuItem>
-              {/* {user.team && ( */}
-              <MenuItem
-                className="sidebar-font-submenu"
-                component={<Link to="/people/team-members" />}
-                style={{
-                  borderLeft: getBorderLeft("/people/team-members"),
-                  color: getColor("/people/team-members"),
-                }}
-              >
-                Team Members
-              </MenuItem>
-              {/* )} */}
+              {user.team && (
+                <MenuItem
+                  className="sidebar-font-submenu"
+                  component={<Link to="/people/team-members" />}
+                  style={{
+                    borderLeft: getBorderLeft("/people/team-members"),
+                    color: getColor("/people/team-members"),
+                  }}
+                >
+                  Team Members
+                </MenuItem>
+              )}
             </SubMenu>
           )}
 

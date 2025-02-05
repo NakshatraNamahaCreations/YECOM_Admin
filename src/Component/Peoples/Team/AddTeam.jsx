@@ -30,6 +30,7 @@ function AddTeam() {
   const [Marketing, setMarketing] = useState(false);
   const [Paymentkey, setPaymentkey] = useState(false);
   const [Coupon, setCoupon] = useState(false);
+  const [team, setteam] = useState(false);
   const [selfService, setSelfService] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -52,6 +53,7 @@ function AddTeam() {
           Marketing: Marketing,
           Paymentkey: Paymentkey,
           Coupon: Coupon,
+          team: team,
         };
         const res = await postData(apiUrl.ADD_TEAMMEMBER, data);
         if (res) {
@@ -254,6 +256,31 @@ function AddTeam() {
                         type="checkbox"
                         checked={Chat}
                         onChange={(e) => setChat(!Chat)}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
+                  <div class="textSubText-0-1-183">
+                    <div class="toggleHeading-0-1-178 undefined">
+                      <div
+                        class="permissionIconTextWrap-0-1-172"
+                        style={{ fontSize: "15px" }}
+                      >
+                        <div class="textWrapper-0-1-176">
+                          <span>
+                            <div>Team</div>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="medium-0-1-180">
+                    <div class="ui fitted toggle checkbox undefined ">
+                      <input
+                        type="checkbox"
+                        checked={team}
+                        onChange={(e) => setteam(!team)}
                       />
                     </div>
                   </div>
