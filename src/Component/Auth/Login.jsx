@@ -63,35 +63,27 @@ function Login() {
   };
 
   return (
-    <div className="row me-0 justify-center">
+    <div className="row me-0 justify-center" style={{ alignItems: "center" }}>
       <ToastContainer position="top-right" />
-      {/* <div className="col-md-6" style={{ backgroundColor: "#F7FAFC" }}>
-        <div> */}
-      {/* <p class="login-left-heading">The future of education is here</p>
-          <p class="login-left-subheading">
-            {" "}
-            With an all in one platform for the teaching world
-          </p> */}
 
-      {/* </div> */}
-      {/* <div>
-          
-        </div> */}
-      {/* </div> */}
-      <div className="col-md-6" style={{ padding: "100px" }}>
-        <img
-          src="../plogo.png"
-          alt=""
-          style={{ width: "250px", height: "90px" }}
-        />
-        <p class="accountLogin-heading mt-3">Login to your account</p>
-        <p class="accountLogin-subHeading">
+      <div className="col-md-4" style={{ padding: "50px" }}>
+        <div className="d-flex" style={{ justifyContent: "center" }}>
+          <img
+            src="../plogo.png"
+            alt=""
+            style={{ width: "250px", height: "90px" }}
+          />
+        </div>
+
+        <p class="accountLogin-heading text-center mt-3">
+          Login to your account
+        </p>
+        <p class="accountLogin-subHeading text-center">
           Please enter your mobile number to continue
         </p>
         <div>
           <div class="accountLogin-mobile-field">
-            <InputGroup className="mb-3">
-              {/* <InputGroup.Text id="basic-addon1"></InputGroup.Text> */}
+            {/* <InputGroup className="mb-3">
               <Form.Control
                 // type="number"
                 placeholder="Email id"
@@ -99,11 +91,24 @@ function Login() {
                 aria-describedby="basic-addon1"
                 onChange={(e) => setemailOrName(e.target.value)}
               />
-            </InputGroup>
+            </InputGroup> */}
+            <input
+              type="tell"
+              className="col-md-12 mb-2 mt-2"
+              placeholder="Email id"
+              value={emailOrName}
+              onChange={(e) => setemailOrName(e.target.value)}
+              style={{
+                border: "1px solid lightgrey",
+                height: "45px",
+                paddingLeft: "15px",
+                borderRadius: "5px",
+                outline: "none",
+              }}
+            />
           </div>
-          <div class="accountLogin-mobile-field">
-            <InputGroup className="mb-3">
-              {/* <InputGroup.Text id="basic-addon1"></InputGroup.Text> */}
+          <div class="accountLogin-mobile-field mt-3">
+            {/* <InputGroup className="mb-3">
               <Form.Control
                 // type="number"
                 placeholder="Password"
@@ -111,11 +116,27 @@ function Login() {
                 aria-describedby="basic-addon1"
                 onChange={(e) => setpassword(e.target.value)}
               />
-            </InputGroup>
+            </InputGroup> */}
+            <input
+              type="tell"
+              className="col-md-12 mb-3"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setpassword(e.target.value)}
+              style={{
+                border: "1px solid lightgrey",
+                height: "45px",
+                paddingLeft: "15px",
+                borderRadius: "5px",
+                outline: "none",
+              }}
+            />
           </div>
-          <button className="accountLogin-btn" onClick={login}>
-            Login
-          </button>
+          <div className="d-flex mt-2" style={{ justifyContent: "center" }}>
+            <button className="accountLogin-btn" onClick={login}>
+              Login
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -26,21 +26,22 @@ import { postData } from "../../../Api-Service/apiHelper";
 function TeamMember() {
   const [showModal, setShowModal] = useState(false);
   const [selectedMember, setSelectedMember] = useState(null);
+
   const [updatedMember, setUpdatedMember] = useState({
     name: "",
     email: "",
     password: "",
     permissions: {
-      course: false,
-      banner: false,
-      youtubeVideo: false,
-      broadcast: false,
-      payment: false,
+      Courses: false,
+      userapp: false,
       tryToBook: false,
-      chat: false,
-      pricing: false,
-      campaign: false,
-      team: false,
+      People: false,
+      Payments: false,
+      Chat: false,
+      Pricing: false,
+      Marketing: false,
+      Paymentkey: false,
+      Coupon: false,
     },
   });
 
@@ -135,16 +136,16 @@ function TeamMember() {
     setUpdatedMember({
       ...member,
       permissions: {
-        course: member.course || false,
-        banner: member.banner || false,
-        youtubeVideo: member.youtubeVideo || false,
-        broadcast: member.broadcast || false,
-        payment: member.payment || false,
+        Courses: member.Courses || false,
+        userapp: member.userapp || false,
         tryToBook: member.tryToBook || false,
-        chat: member.chat || false,
-        pricing: member.pricing || false,
-        campaign: member.campaign || false,
-        team: member.team || false,
+        People: member.People || false,
+        Payments: member.Payments || false,
+        Chat: member.Chat || false,
+        Pricing: member.Pricing || false,
+        Marketing: member.Marketing || false,
+        Paymentkey: member.Paymentkey || false,
+        Coupon: member.Coupon || false,
       },
     });
     setShowModal(true);
@@ -234,51 +235,51 @@ function TeamMember() {
       selector: (row) => (
         <div style={styles.root01698}>
           <div style={styles.iconCont0199}>
-            <div style={{ color: row.course ? "black" : "#9e9e9e" }}>
+            <div style={{ color: row.Courses ? "black" : "#9e9e9e" }}>
               My Course
             </div>
           </div>
           <div style={styles.iconCont0199}>
-            <div style={{ color: row.banner ? "black" : "#9e9e9e" }}>
-              Banners
+            <div style={{ color: row.userapp ? "black" : "#9e9e9e" }}>
+              User App
             </div>
           </div>
           <div style={styles.iconCont0199}>
-            <div style={{ color: row.youtubeVideo ? "black" : "#9e9e9e" }}>
-              Youtube
+            <div style={{ color: row.People ? "black" : "#9e9e9e" }}>
+              People
             </div>
           </div>
           <div style={styles.iconCont0199}>
-            <div style={{ color: row.broadcast ? "black" : "#9e9e9e" }}>
-              Broadcast
+            <div style={{ color: row.Payments ? "black" : "#9e9e9e" }}>
+              Payments
             </div>
           </div>
           <div style={styles.iconCont0199}>
-            <div style={{ color: row.payment ? "black" : "#9e9e9e" }}>
-              Payment
-            </div>
-          </div>
-          <div style={styles.iconCont0199}>
-            <div style={{ color: row.tryToBook ? "black" : "#9e9e9e" }}>
-              Try to Booking
-            </div>
-          </div>
-          <div style={styles.iconCont0199}>
-            <div style={{ color: row.chat ? "black" : "#9e9e9e" }}>Chat</div>
-          </div>
-          <div style={styles.iconCont0199}>
-            <div style={{ color: row.pricing ? "black" : "#9e9e9e" }}>
+            <div style={{ color: row.Pricing ? "black" : "#9e9e9e" }}>
               Pricing
             </div>
           </div>
           <div style={styles.iconCont0199}>
-            <div style={{ color: row.team ? "black" : "#9e9e9e" }}>
-              Team Members
+            <div style={{ color: row.Chat ? "black" : "#9e9e9e" }}>Chat</div>
+          </div>
+          <div style={styles.iconCont0199}>
+            <div style={{ color: row.tryToBook ? "black" : "#9e9e9e" }}>
+              Try to Book
             </div>
           </div>
           <div style={styles.iconCont0199}>
-            <div style={{ color: row.campaign ? "black" : "#9e9e9e" }}>
-              Campaign
+            <div style={{ color: row.Marketing ? "black" : "#9e9e9e" }}>
+              Marketing
+            </div>
+          </div>
+          <div style={styles.iconCont0199}>
+            <div style={{ color: row.Paymentkey ? "black" : "#9e9e9e" }}>
+              Paymentkey
+            </div>
+          </div>
+          <div style={styles.iconCont0199}>
+            <div style={{ color: row.Coupon ? "black" : "#9e9e9e" }}>
+              Coupon
             </div>
           </div>
         </div>

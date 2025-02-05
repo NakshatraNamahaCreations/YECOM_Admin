@@ -8,44 +8,6 @@ import { apiUrl } from "../../../Api-Service/apiConstants";
 import moment from "moment";
 import axios from "axios";
 
-// const convertToCSV = (data) => {
-//   const headers = [
-//     "User Name",
-//     "Email",
-//     "Phone Number",
-//     "Search Count",
-//     "Search Limit",
-//     "Date of Joining",
-//   ];
-//   const rows = data.map((user) => [
-//     `"${user.username}"`,
-//     `"${user.email}"`,
-//     `"${user.phoneNumber}"`,
-//     `"${user.searchcount}"`,
-//     `"${user.searchLimit}"`,
-//     `"${moment(user.createdAt).format("DD-MMM-YY")}"`,
-//   ]);
-
-//   const csvContent = [
-//     headers.join(","),
-//     ...rows.map((row) => row.join(",")),
-//   ].join("\n");
-//   return csvContent;
-// };
-
-// // Function to trigger CSV download
-// const downloadCSV = (data) => {
-//   const csvContent = convertToCSV(data);
-//   const blob = new Blob([csvContent], { type: "text/csv" });
-//   const url = URL.createObjectURL(blob);
-//   const link = document.createElement("a");
-//   link.href = url;
-//   link.download = "users_data.csv";
-//   document.body.appendChild(link);
-//   link.click();
-//   document.body.removeChild(link);
-// };
-
 function Users() {
   const [openCanvas, setOpenCanvas] = useState({});
   const [showUsers, setShowUser] = useState(false);
@@ -150,6 +112,39 @@ function Users() {
     }
   };
 
+  const user = JSON.parse(localStorage.getItem("ecomAdmin"));
+  console.log("user in navbar", user);
+
+  const canDelete = () => {
+    const user = JSON.parse(localStorage.getItem("ecomAdmin")) || {}; // Get user from localStorage
+
+    const requiredKeys = [
+      "Courses",
+      "userapp",
+      "tryToBook",
+      "People",
+      "Payments",
+      "Chat",
+      "Pricing",
+      "Marketing",
+      "Paymentkey",
+      "Coupon",
+    ];
+
+    console.log("User Data:", user);
+
+    // Debugging: Log each key's value
+    requiredKeys.forEach((key) => {
+      console.log(`${key}:`, user[key]); // Log each key-value pair
+    });
+
+    // Ensure all properties exist in user and are true
+    const allTrue = requiredKeys.every((key) => user[key] === true);
+
+    console.log("Final canDelete result:", allTrue);
+    return allTrue;
+  };
+
   const columns = [
     {
       name: "User Name",
@@ -187,12 +182,18 @@ function Users() {
             className="fa-solid fa-eye mx-2"
             style={{ color: "black", cursor: "pointer", fontSize: "17px" }}
           ></i>
-
-          <i
+          {canDelete(row) && (
+            <i
+              onClick={() => handledelete(row._id)}
+              className="fa-solid fa-trash"
+              style={{ color: "black", cursor: "pointer", fontSize: "17px" }}
+            ></i>
+          )}
+          {/* <i
             onClick={() => handledelete(row._id)}
             className="fa-solid fa-trash"
             style={{ color: "black", cursor: "pointer", fontSize: "17px" }}
-          ></i>
+          ></i> */}
         </div>
       ),
       sortable: true,
@@ -267,67 +268,6 @@ function Users() {
 
   console.log("openCanvas", openCanvas);
   console.log("allUsers", allUsers);
-
-  // const generatePaymentReport = () => {
-  //   const mergedData = paymentdata
-  //     .map((payment) => {
-  //       const user = allUsers.find((u) => u._id === payment.userId);
-  //       if (!user) return null;
-
-  //       const plan = allplans.find((p) => p._id === payment.planId);
-
-  //       return {
-  //         username: user.username || "N/A",
-  //         email: user.email || "N/A",
-  //         phoneNumber: user.phoneNumber || "N/A",
-  //         orderId: payment.orderId || "N/A",
-  //         amount: payment.amount || "N/A",
-  //         currency: payment.currency || "N/A",
-  //         paymentStatus: payment.paymentStatus ? "Success" : "Failure",
-  //         planName: plan ? plan.planName : "No Plan",
-  //         planPrice: plan ? plan.price : "N/A",
-  //         searchCount: plan ? plan.searchCount : "N/A",
-  //         validPeriod: plan ? `${plan.noOfPeriod} ${plan.validPeriod}` : "N/A",
-  //         createdAt: moment(payment.createdAt).format("DD-MMM-YYYY"),
-  //       };
-  //     })
-  //     .filter(Boolean);
-
-  //   if (mergedData.length === 0) {
-  //     alert("No matching payment data found.");
-  //     return;
-  //   }
-
-  //   const headers = [
-  //     "User Name",
-  //     "Email",
-  //     "Phone Number",
-  //     "Order ID",
-  //     "Amount",
-  //     "Currency",
-  //     "Payment Status",
-  //     "Plan Name",
-  //     "Plan Price",
-  //     "Search Count",
-  //     "Validity",
-  //     "Date of Payment",
-  //   ];
-  //   const rows = mergedData.map((item) => Object.values(item));
-
-  //   const csvContent = [
-  //     headers.join(","),
-  //     ...rows.map((row) => row.join(",")),
-  //   ].join("\n");
-
-  //   const blob = new Blob([csvContent], { type: "text/csv" });
-  //   const url = URL.createObjectURL(blob);
-  //   const link = document.createElement("a");
-  //   link.href = url;
-  //   link.download = "User_Payment_Report.csv";
-  //   document.body.appendChild(link);
-  //   link.click();
-  //   document.body.removeChild(link);
-  // };
 
   const generatePaymentReport = () => {
     const mergedData = allUsers.map((user) => {
@@ -416,6 +356,7 @@ function Users() {
     link.click();
     document.body.removeChild(link);
   };
+
   return (
     <div className="mt-3">
       <div className="d-flex justify-content-between mt-3">

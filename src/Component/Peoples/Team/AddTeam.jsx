@@ -20,20 +20,16 @@ function AddTeam() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [website, setWebsite] = useState(false);
-  const [banner, setBanner] = useState(false);
-  const [youtubeVideo, setYoutubeVideo] = useState(false);
-  const [broadcast, setBroadcast] = useState(false);
-  const [payment, setPayment] = useState(false);
-  const [tryToBook, setTryToBook] = useState(false);
-  const [chat, setChat] = useState(false);
-  const [pricing, setPricing] = useState(false);
-  const [coupon, setCoupon] = useState(false);
-  const [team, setTeam] = useState(false);
-  const [user, setUser] = useState(false);
-  const [freeMaterial, setFreeMaterial] = useState(false);
-  const [campaign, setCampaign] = useState(false);
-  const [course, setCourse] = useState(false);
+  const [Courses, setCourses] = useState(false);
+  const [userapp, setuserapp] = useState(false);
+  const [tryToBook, settryToBook] = useState(false);
+  const [People, setPeople] = useState(false);
+  const [Payments, setPayments] = useState(false);
+  const [Chat, setChat] = useState(false);
+  const [Pricing, setPricing] = useState(false);
+  const [Marketing, setMarketing] = useState(false);
+  const [Paymentkey, setPaymentkey] = useState(false);
+  const [Coupon, setCoupon] = useState(false);
   const [selfService, setSelfService] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -46,16 +42,16 @@ function AddTeam() {
           name: name,
           password: password,
           email: email,
+          Courses: Courses,
+          userapp: userapp,
           tryToBook: tryToBook,
-          banner: banner,
-          chat: chat,
-          youtubeVideo: youtubeVideo,
-          team: team,
-          broadcast: broadcast,
-          payment: payment,
-          campaign: campaign,
-          course: course,
-          pricing: pricing,
+          People: People,
+          Payments: Payments,
+          Chat: Chat,
+          Pricing: Pricing,
+          Marketing: Marketing,
+          Paymentkey: Paymentkey,
+          Coupon: Coupon,
         };
         const res = await postData(apiUrl.ADD_TEAMMEMBER, data);
         if (res) {
@@ -129,8 +125,8 @@ function AddTeam() {
                     <div class="ui fitted toggle checkbox undefined ">
                       <input
                         type="checkbox"
-                        checked={course}
-                        onChange={(e) => setCourse(!course)}
+                        checked={Courses}
+                        onChange={(e) => setCourses(!Courses)}
                       />
                     </div>
                   </div>
@@ -145,7 +141,7 @@ function AddTeam() {
                       >
                         <div class="textWrapper-0-1-176">
                           <span>
-                            <div>Manage Banner's</div>
+                            <div>User App</div>
                           </span>
                         </div>
                       </div>
@@ -155,8 +151,8 @@ function AddTeam() {
                     <div class="ui fitted toggle checkbox undefined ">
                       <input
                         type="checkbox"
-                        checked={banner}
-                        onChange={(e) => setBanner(!banner)}
+                        checked={userapp}
+                        onChange={(e) => setuserapp(!userapp)}
                       />
                     </div>
                   </div>
@@ -170,7 +166,7 @@ function AddTeam() {
                       >
                         <div class="textWrapper-0-1-176">
                           <span>
-                            <div>Youtube Video</div>
+                            <div>People</div>
                           </span>
                         </div>
                       </div>
@@ -180,8 +176,8 @@ function AddTeam() {
                     <div class="ui fitted toggle checkbox undefined ">
                       <input
                         type="checkbox"
-                        checked={youtubeVideo}
-                        onChange={(e) => setYoutubeVideo(!youtubeVideo)}
+                        checked={People}
+                        onChange={(e) => setPeople(!People)}
                       />
                     </div>
                   </div>
@@ -195,7 +191,7 @@ function AddTeam() {
                       >
                         <div class="textWrapper-0-1-176">
                           <span>
-                            <div>Broadcast</div>
+                            <div>Payments</div>
                           </span>
                         </div>
                       </div>
@@ -205,8 +201,34 @@ function AddTeam() {
                     <div class="ui fitted toggle checkbox undefined ">
                       <input
                         type="checkbox"
-                        checked={broadcast}
-                        onChange={(e) => setBroadcast(!broadcast)}
+                        checked={Payments}
+                        onChange={(e) => setPayments(!Payments)}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
+                  <div class="textSubText-0-1-183">
+                    <div class="toggleHeading-0-1-178 undefined">
+                      <div
+                        class="permissionIconTextWrap-0-1-172"
+                        style={{ fontSize: "15px" }}
+                      >
+                        <div class="textWrapper-0-1-176">
+                          <span>
+                            <div>Pricing</div>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="medium-0-1-180">
+                    <div class="ui fitted toggle checkbox undefined ">
+                      <input
+                        type="checkbox"
+                        checked={Pricing}
+                        onChange={(e) => setPricing(!Pricing)}
                       />
                     </div>
                   </div>
@@ -220,7 +242,7 @@ function AddTeam() {
                       >
                         <div class="textWrapper-0-1-176">
                           <span>
-                            <div>Payment</div>
+                            <div>Chat</div>
                           </span>
                         </div>
                       </div>
@@ -230,8 +252,83 @@ function AddTeam() {
                     <div class="ui fitted toggle checkbox undefined ">
                       <input
                         type="checkbox"
-                        checked={payment}
-                        onChange={(e) => setPayment(!payment)}
+                        checked={Chat}
+                        onChange={(e) => setChat(!Chat)}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
+                  <div class="textSubText-0-1-183">
+                    <div class="toggleHeading-0-1-178 undefined">
+                      <div
+                        class="permissionIconTextWrap-0-1-172"
+                        style={{ fontSize: "15px" }}
+                      >
+                        <div class="textWrapper-0-1-176">
+                          <span>
+                            <div>Marketing</div>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="medium-0-1-180">
+                    <div class="ui fitted toggle checkbox undefined ">
+                      <input
+                        type="checkbox"
+                        checked={Marketing}
+                        onChange={(e) => setMarketing(!Marketing)}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
+                  <div class="textSubText-0-1-183">
+                    <div class="toggleHeading-0-1-178 undefined">
+                      <div
+                        class="permissionIconTextWrap-0-1-172"
+                        style={{ fontSize: "15px" }}
+                      >
+                        <div class="textWrapper-0-1-176">
+                          <span>
+                            <div>Paymentkey</div>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="medium-0-1-180">
+                    <div class="ui fitted toggle checkbox undefined ">
+                      <input
+                        type="checkbox"
+                        checked={Paymentkey}
+                        onChange={(e) => setPaymentkey(!Paymentkey)}
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
+                  <div class="textSubText-0-1-183">
+                    <div class="toggleHeading-0-1-178 undefined">
+                      <div
+                        class="permissionIconTextWrap-0-1-172"
+                        style={{ fontSize: "15px" }}
+                      >
+                        <div class="textWrapper-0-1-176">
+                          <span>
+                            <div>Coupon</div>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="medium-0-1-180">
+                    <div class="ui fitted toggle checkbox undefined ">
+                      <input
+                        type="checkbox"
+                        checked={Coupon}
+                        onChange={(e) => setCoupon(!Coupon)}
                       />
                     </div>
                   </div>
@@ -256,109 +353,7 @@ function AddTeam() {
                       <input
                         type="checkbox"
                         checked={tryToBook}
-                        onChange={(e) => setTryToBook(!tryToBook)}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
-                  <div class="textSubText-0-1-183">
-                    <div class="toggleHeading-0-1-178 undefined">
-                      <div
-                        class="permissionIconTextWrap-0-1-172"
-                        style={{ fontSize: "15px" }}
-                      >
-                        <div class="textWrapper-0-1-176">
-                          <span>
-                            <div>Chat</div>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="medium-0-1-180">
-                    <div class="ui fitted toggle checkbox undefined ">
-                      <input
-                        type="checkbox"
-                        checked={chat}
-                        onChange={(e) => setChat(!chat)}
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
-                  <div class="textSubText-0-1-183">
-                    <div class="toggleHeading-0-1-178 undefined">
-                      <div
-                        class="permissionIconTextWrap-0-1-172"
-                        style={{ fontSize: "15px" }}
-                      >
-                        <div class="textWrapper-0-1-176">
-                          <span>
-                            <div>Pricing</div>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="medium-0-1-180">
-                    <div class="ui fitted toggle checkbox undefined ">
-                      <input
-                        type="checkbox"
-                        checked={pricing}
-                        onChange={(e) => setPricing(!pricing)}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
-                  <div class="textSubText-0-1-183">
-                    <div class="toggleHeading-0-1-178 undefined">
-                      <div
-                        class="permissionIconTextWrap-0-1-172"
-                        style={{ fontSize: "15px" }}
-                      >
-                        <div class="textWrapper-0-1-176">
-                          <span>
-                            <div>Team</div>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="medium-0-1-180">
-                    <div class="ui fitted toggle checkbox undefined ">
-                      <input
-                        type="checkbox"
-                        checked={team}
-                        onChange={(e) => setTeam(!team)}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
-                  <div class="textSubText-0-1-183">
-                    <div class="toggleHeading-0-1-178 undefined">
-                      <div
-                        class="permissionIconTextWrap-0-1-172"
-                        style={{ fontSize: "15px" }}
-                      >
-                        <div class="textWrapper-0-1-176">
-                          <span>
-                            <div>Campaign</div>
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="medium-0-1-180">
-                    <div class="ui fitted toggle checkbox undefined ">
-                      <input
-                        type="checkbox"
-                        checked={campaign}
-                        onChange={(e) => setCampaign(!campaign)}
+                        onChange={(e) => settryToBook(!tryToBook)}
                       />
                     </div>
                   </div>
