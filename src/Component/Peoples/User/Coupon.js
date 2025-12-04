@@ -7,23 +7,27 @@ import { getData } from "../../../Api-Service/apiHelper";
 import { apiUrl } from "../../../Api-Service/apiConstants";
 import moment from "moment";
 import axios from "axios";
+import { Select } from "@mui/material";
 
 function Coupon() {
   const [show, setShow] = useState(false);
   const [couponcode, setcouponcode] = useState("");
   const [discount, setdiscount] = useState("");
   const [allcoupondata, setallcoupondata] = useState("");
+  const [allplan, setallplan] = useState([]);
+  const [planname, setplanname] = useState([]);
 
   const createCoupon = async () => {
-    if (!couponcode || !discount) {
+    if (!couponcode || !discount || !planname) {
       alert("Please fill all the fields");
-      return; // Stop execution if fields are empty
+      return;
     }
 
     try {
       const data = {
         couponCode: couponcode,
         discount: discount,
+        planid: planname,
       };
 
       const res = await axios.post(
@@ -64,6 +68,21 @@ function Coupon() {
 
   console.log("allcoupondata", allcoupondata);
 
+  useEffect(() => {
+    getallplan();
+  }, []);
+
+  const getallplan = async () => {
+    try {
+      const response = await axios.get(
+        "https://api.proleverageadmin.in/api/plans/getallplan"
+      );
+      setallplan(response.data.data);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+
   const handleClose = () => {
     setShow(false);
   };
@@ -102,6 +121,11 @@ function Coupon() {
       selector: (row) => row.discount,
       sortable: true,
     },
+    {
+      name: "Plan Name",
+      selector: (row) => row.planid,
+      sortable: true,
+    },
 
     {
       name: " Action",
@@ -117,6 +141,8 @@ function Coupon() {
       sortable: true,
     },
   ];
+
+  console.log("allplan", allplan);
 
   return (
     <div className="mt-3">
@@ -181,6 +207,21 @@ function Coupon() {
               fontSize: "14px",
             }}
           />
+
+          <div className="mb-1 mt-2" style={{ fontSize: "15px" }}>
+            Plan Name
+          </div>
+
+          <select
+            className="form-control"
+            value={planname}
+            onChange={(e) => setplanname(e.target.value)}
+          >
+            <option>---select planname---</option>
+            {allplan.map((data, key) => (
+              <option>{data.planName}</option>
+            ))}
+          </select>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={createCoupon}>

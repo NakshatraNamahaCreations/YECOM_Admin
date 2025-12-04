@@ -52,6 +52,7 @@ function SideBar() {
             <h3 style={{ color: "#00007c" }}>Proleverage</h3>
           </div>
           {/* Dashboard===================== */}
+  {user.Dashboard && (
           <MenuItem
             className="sidebar-font-menu"
             component={<Link to="/dashboard" />}
@@ -64,6 +65,7 @@ function SideBar() {
           >
             Dashboard
           </MenuItem>
+)}
 
           {user.Courses && (
             <SubMenu

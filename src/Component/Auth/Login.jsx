@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { apiUrl } from "../../Api-Service/apiConstants";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function Login() {
   // const login = () => {
@@ -12,6 +13,7 @@ function Login() {
   // };
   const [emailOrName, setemailOrName] = useState("");
   const [password, setpassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const login = async (e) => {
     e.preventDefault();
@@ -41,7 +43,7 @@ function Login() {
 
           localStorage.setItem("ecomAdmin", JSON.stringify(response.data.user));
 
-          window.location.assign("/dashboard");
+          window.location.assign("/Home-page");
         } else {
           // alert(data.response);
           alert(response.data.error);
@@ -117,7 +119,7 @@ function Login() {
                 onChange={(e) => setpassword(e.target.value)}
               />
             </InputGroup> */}
-            <input
+            {/* <input
               type="tell"
               className="col-md-12 mb-3"
               placeholder="Password"
@@ -130,7 +132,42 @@ function Login() {
                 borderRadius: "5px",
                 outline: "none",
               }}
-            />
+            /> */}
+            <div
+              className="accountLogin-mobile-field mt-3"
+              style={{ position: "relative" }}
+            >
+              <input
+                type={showPassword ? "text" : "password"} // Toggle input type
+                className="col-md-12 mb-3"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setpassword(e.target.value)}
+                style={{
+                  border: "1px solid lightgrey",
+                  height: "45px",
+                  paddingLeft: "15px",
+                  borderRadius: "5px",
+                  outline: "none",
+                  width: "100%",
+                  paddingRight: "40px", // Space for the eye icon
+                }}
+              />
+              {/* Eye Icon */}
+              <span
+                onClick={() => setShowPassword(!showPassword)}
+                style={{
+                  position: "absolute",
+                  right: "15px",
+                  top: "40%",
+                  transform: "translateY(-50%)",
+                  cursor: "pointer",
+                  color: "gray",
+                }}
+              >
+                {showPassword ? <FaEye size={20} /> : <FaEyeSlash size={20} />}
+              </span>
+            </div>
           </div>
           <div className="d-flex mt-2" style={{ justifyContent: "center" }}>
             <button className="accountLogin-btn" onClick={login}>

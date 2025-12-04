@@ -7,6 +7,7 @@ import { getData } from "../../../Api-Service/apiHelper";
 import { apiUrl } from "../../../Api-Service/apiConstants";
 import moment from "moment";
 import axios from "axios";
+import { Select } from "@chakra-ui/react";
 
 function Users() {
   const [openCanvas, setOpenCanvas] = useState({});
@@ -18,19 +19,30 @@ function Users() {
   const [searchvalue, setsearchvalue] = useState("");
   const [paymentdata, setPaymentData] = useState([]);
   const [allplans, setAllPlans] = useState([]);
+  const [selectedFilter, setSelectedFilter] = useState("all");
+  const [paymentStatusFilter, setPaymentStatusFilter] = useState("all");
+  const [paymentstatus, setpaymentstatus] = useState();
+  const [paymentStatusUpdate, setPaymentStatusUpdate] = useState("");
+  const [show1, setShow1] = useState(false);
+  const [selectedPlanId, setSelectedPlanId] = useState("");
+
+  const handleClose1 = () => {
+    setShow1(false);
+    setPaymentStatusUpdate("");
+  };
+  const handleShow1 = (userId) => {
+    setShow1(true);
+    setSelectedUserId(userId);
+  };
 
   const handleClose = () => {
     setShow(false);
     setsearchLimit("");
-    setSelectedUserId(null); // Clear selected user
+    setSelectedUserId(null);
   };
   const handleShow = (userId) => {
     setSelectedUserId(userId);
     setShow(true);
-  };
-  const handleOpeningCanvas = (row) => {
-    setOpenCanvas(row);
-    setShowUser(true);
   };
 
   const updateSearchCount = async () => {
@@ -40,7 +52,7 @@ function Users() {
     }
 
     try {
-      const data = { searchLimit: Number(searchLimit) }; // Ensure it's a number
+      const data = { searchLimit: Number(searchLimit) };
 
       const response = await axios.put(
         `https://api.proleverageadmin.in/api/users/updateUsersearchcount/${selectedUserId}`,
@@ -49,8 +61,8 @@ function Users() {
 
       if (response.status === 200) {
         alert("Search count updated successfully.");
-        fetchData(); // Refresh the data
-        handleClose(); // Close the modal
+        fetchData();
+        handleClose();
       } else {
         alert("Failed to update search count. Please try again.");
       }
@@ -59,8 +71,6 @@ function Users() {
       alert("An unexpected error occurred. Please try again.");
     }
   };
-
-  const handleClosingCanvas = () => setShowUser(false);
 
   useEffect(() => {
     fetchData();
@@ -116,7 +126,7 @@ function Users() {
   console.log("user in navbar", user);
 
   const canDelete = () => {
-    const user = JSON.parse(localStorage.getItem("ecomAdmin")) || {}; // Get user from localStorage
+    const user = JSON.parse(localStorage.getItem("ecomAdmin")) || {};
 
     const requiredKeys = [
       "Courses",
@@ -145,6 +155,8 @@ function Users() {
     return allTrue;
   };
 
+  console.log("paymentstatus", paymentstatus);
+
   const columns = [
     {
       name: "User Name",
@@ -156,6 +168,7 @@ function Users() {
       name: "Email",
       selector: (row) => row.email,
       sortable: true,
+ wrap: true,
     },
     {
       name: "Phone Number",
@@ -163,8 +176,26 @@ function Users() {
       sortable: true,
     },
     {
+      name: "Search Remaining Count",
+      selector: (row) => row.searchLimit - row.searchcount,
+      sortable: true,
+    },
+    {
       name: "Date of Joining",
       selector: (row) => moment(row.createdAt).format("DD-MMM-YY"),
+      sortable: true,
+    },
+    {
+      name: "Payment Status",
+      selector: (row) => {
+        const userPayments = paymentdata.filter(
+          (payment) => payment.userId === row._id
+        );
+        const hasSuccessPayment = userPayments.some(
+          (payment) => payment.paymentStatus === true
+        );
+        return hasSuccessPayment ? "Paid" : "Unpaid";
+      },
       sortable: true,
     },
 
@@ -190,10 +221,15 @@ function Users() {
             ></i>
           )}
           {/* <i
-            onClick={() => handledelete(row._id)}
-            className="fa-solid fa-trash"
+            onClick={() => handleShow1(row._id)}
+            className="fa-solid fa-pen-to-square"
             style={{ color: "black", cursor: "pointer", fontSize: "17px" }}
           ></i> */}
+          <i
+            className="fa-solid fa-money-bill mx-2"
+            onClick={() => handleShow1(row._id)}
+            style={{ color: "black", cursor: "pointer", fontSize: "17px" }}
+          ></i>
         </div>
       ),
       sortable: true,
@@ -234,7 +270,6 @@ function Users() {
 
   useEffect(() => {
     getAllPayment();
-    getAllPlans();
   }, []);
 
   const getAllPayment = async () => {
@@ -250,6 +285,12 @@ function Users() {
     }
   };
 
+  console.log("paymentdata", paymentdata);
+
+  useEffect(() => {
+    getAllPlans();
+  }, []);
+
   const getAllPlans = async () => {
     try {
       const response = await axios.get(
@@ -264,19 +305,15 @@ function Users() {
   };
 
   console.log("allplans", allplans);
-  console.log("paymentdata", paymentdata);
-
-  console.log("openCanvas", openCanvas);
-  console.log("allUsers", allUsers);
 
   const generatePaymentReport = () => {
-    const mergedData = allUsers.map((user) => {
-      // Find matching payments for the user
+    const filteredUsers = filterusers1();
+
+    const mergedData = filteredUsers.map((user) => {
       const userPayments = paymentdata.filter(
         (payment) => payment.userId === user._id
       );
 
-      // If no payment, return user details with "No Payment" status
       if (userPayments.length === 0) {
         return {
           username: user.username || "N/A",
@@ -294,9 +331,7 @@ function Users() {
         };
       }
 
-      // If user has multiple payments, return each payment as a separate entry
       return userPayments.map((payment) => {
-        // Find the corresponding plan for the payment
         const plan = allplans.find((p) => p._id === payment.planId);
 
         return {
@@ -316,7 +351,6 @@ function Users() {
       });
     });
 
-    // Flatten the array (handle users with multiple payments)
     const flattenedData = mergedData.flat();
 
     if (flattenedData.length === 0) {
@@ -324,7 +358,6 @@ function Users() {
       return;
     }
 
-    // Convert data to CSV format
     const headers = [
       "User Name",
       "Email",
@@ -346,15 +379,92 @@ function Users() {
       ...rows.map((row) => row.join(",")),
     ].join("\n");
 
-    // Trigger file download
     const blob = new Blob([csvContent], { type: "text/csv" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = "User_Payment_Report.csv";
+    link.download = `User_Payment_Report_${selectedFilter}.csv`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  };
+
+  const filterusers1 = () => {
+    return allUsers
+      .filter((data) => {
+        const createdAt = moment(data.createdAt);
+        const today = moment().startOf("day");
+
+        // Filter by Date Range
+        if (selectedFilter === "today") {
+          return createdAt.isSame(today, "day");
+        } else if (selectedFilter === "thisWeek") {
+          return createdAt.isSame(today, "week");
+        } else if (selectedFilter === "thisMonth") {
+          return createdAt.isSame(today, "month");
+        }
+        return true;
+      })
+      .filter((data) => {
+        return (
+          (data.username &&
+            data.username.toLowerCase().includes(searchvalue.toLowerCase())) ||
+          (data.phoneNumber &&
+            data.phoneNumber.toString().includes(searchvalue)) ||
+          (data.email &&
+            data.email.toLowerCase().includes(searchvalue.toLowerCase()))
+        );
+      })
+      .filter((data) => {
+        const userPayments = paymentdata.filter(
+          (payment) => payment.userId === data._id
+        );
+        const hasSuccessPayment = userPayments.some(
+          (payment) => payment.paymentStatus === true
+        );
+        const hasFailedPayment = userPayments.some(
+          (payment) => payment.paymentStatus === false
+        );
+
+        // Filter by Payment Status
+        if (paymentStatusFilter === "success") {
+          return hasSuccessPayment;
+        } else if (paymentStatusFilter === "failure") {
+          return hasFailedPayment;
+        }
+        return true;
+      });
+  };
+
+  console.log("selectedUserId", selectedUserId);
+
+  const handleManualPayment = async () => {
+    if (!selectedPlanId || !selectedUserId) {
+      alert("Please select a plan and user.");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "https://api.proleverageadmin.in/api/payment/manual-payment",
+        {
+          userId: selectedUserId,
+          planId: selectedPlanId,
+        }
+      );
+
+      if (response.status === 200) {
+        alert("Manual payment updated and plan activated!");
+        fetchData();
+        handleClose1();
+        window.location.reload();
+      } else {
+        alert("Failed to update payment. Try again.");
+      }
+    } catch (error) {
+      console.error("Manual payment error:", error);
+      alert("Something went wrong!");
+    }
   };
 
   return (
@@ -380,23 +490,61 @@ function Users() {
         </div>
       </div>
 
+      <select
+        className="mt-3"
+        style={{
+          width: "200px",
+          outline: "none",
+
+          border: "1px solid lightgrey",
+          padding: "10px",
+          fontSize: "14px",
+          borderRadius: "5px",
+        }}
+        value={paymentStatusFilter}
+        onChange={(e) => setPaymentStatusFilter(e.target.value)}
+      >
+        <option value="all">All Payments</option>
+        <option value="success">Success</option>
+        <option value="failure">Failure</option>
+      </select>
+
       <div className="d-flex mb-3" style={{ justifyContent: "end" }}>
-        <button
-          className="btn btn-success"
-          // onClick={() => downloadCSV(allUsers)}
-          onClick={generatePaymentReport}
-        >
+        <button className="btn btn-success" onClick={generatePaymentReport}>
           Download
         </button>
       </div>
 
+      <div className="btn-group">
+        <Button
+          variant={selectedFilter === "all" ? "primary" : "secondary"}
+          onClick={() => setSelectedFilter("all")}
+        >
+          All
+        </Button>
+        <Button
+          variant={selectedFilter === "today" ? "primary" : "secondary"}
+          onClick={() => setSelectedFilter("today")}
+        >
+          Today
+        </Button>
+        <Button
+          variant={selectedFilter === "thisWeek" ? "primary" : "secondary"}
+          onClick={() => setSelectedFilter("thisWeek")}
+        >
+          This Week
+        </Button>
+        <Button
+          variant={selectedFilter === "thisMonth" ? "primary" : "secondary"}
+          onClick={() => setSelectedFilter("thisMonth")}
+        >
+          This Month
+        </Button>
+      </div>
+
       {/* Table */}
       <div className="TableHeaderContainer-0-1-672" style={{ width: "100%" }}>
-        <DataTable
-          columns={columns}
-          data={filterusers()}
-          // defaultSortFieldId={1}
-        />
+        <DataTable columns={columns} data={filterusers1()} />
       </div>
 
       <Modal show={show} onHide={handleClose} centered>
@@ -421,6 +569,102 @@ function Users() {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="primary" onClick={updateSearchCount}>
+            Add
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={show1} onHide={handleClose1} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>
+            <div className="" style={{ fontSize: "14px" }}>
+              Add Paymet Details
+            </div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="mt-2" style={{ fontSize: "16px" }}>
+            Plan Name
+          </div>
+          <select
+            className="mt-1"
+            value={selectedPlanId}
+            onChange={(e) => setSelectedPlanId(e.target.value)}
+            style={{
+              border: "1px solid lightgrey",
+              paddingLeft: "15px",
+              borderRadius: "5px",
+              height: "35px",
+              outline: "none",
+              width: "100%",
+              fontSize: "14px",
+            }}
+          >
+            <option value="">Select Plan</option>
+            {allplans.map((plan) => (
+              <option key={plan._id} value={plan._id}>
+                {plan.planName}
+              </option>
+            ))}
+          </select>
+
+          <div className="mt-2" style={{ fontSize: "16px" }}>
+            Price
+          </div>
+          <select
+            className="mt-1"
+            value={selectedPlanId}
+            onChange={(e) => setSelectedPlanId(e.target.value)}
+            disabled
+            style={{
+              border: "1px solid lightgrey",
+              paddingLeft: "15px",
+              borderRadius: "5px",
+              height: "35px",
+              outline: "none",
+              width: "100%",
+              fontSize: "14px",
+              backgroundColor: "#f5f5f5",
+            }}
+          >
+            <option value="">Select Price</option>
+            {allplans.map((plan) => (
+              <option key={plan._id} value={plan._id}>
+                ₹{plan.price}
+              </option>
+            ))}
+          </select>
+
+          <div className="mt-2" style={{ fontSize: "16px" }}>
+            Plan Duration
+          </div>
+          <select
+            className="mt-1"
+            value={selectedPlanId}
+            onChange={(e) => setSelectedPlanId(e.target.value)}
+            disabled
+            style={{
+              border: "1px solid lightgrey",
+              paddingLeft: "15px",
+              borderRadius: "5px",
+              height: "35px",
+              outline: "none",
+              width: "100%",
+              fontSize: "14px",
+              backgroundColor: "#f5f5f5",
+            }}
+          >
+            <option value="">Select Duration</option>
+            {allplans.map((plan) => (
+              <option key={plan._id} value={plan._id}>
+                {plan.noOfPeriod} {plan.validPeriod}
+                {plan.noOfPeriod > 1 ? "s" : ""}
+              </option>
+            ))}
+          </select>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={handleManualPayment}>
             Add
           </Button>
         </Modal.Footer>

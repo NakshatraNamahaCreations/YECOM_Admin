@@ -43,6 +43,7 @@ function TeamMember() {
       Paymentkey: false,
       Coupon: false,
       team: false,
+      Dashboard: false,
     },
   });
 
@@ -148,6 +149,7 @@ function TeamMember() {
         Paymentkey: member.Paymentkey || false,
         Coupon: member.Coupon || false,
         team: member.team || false,
+        Dashboard: member.Dashboard || false,
       },
     });
     setShowModal(true);
@@ -237,10 +239,16 @@ function TeamMember() {
       selector: (row) => (
         <div style={styles.root01698}>
           <div style={styles.iconCont0199}>
+            <div style={{ color: row.Dashboard ? "black" : "#9e9e9e" }}>
+              Dashboard
+            </div>
+          </div>
+          <div style={styles.iconCont0199}>
             <div style={{ color: row.Courses ? "black" : "#9e9e9e" }}>
               My Course
             </div>
           </div>
+
           <div style={styles.iconCont0199}>
             <div style={{ color: row.userapp ? "black" : "#9e9e9e" }}>
               User App

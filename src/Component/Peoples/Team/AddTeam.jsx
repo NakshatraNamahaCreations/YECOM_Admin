@@ -31,6 +31,7 @@ function AddTeam() {
   const [Paymentkey, setPaymentkey] = useState(false);
   const [Coupon, setCoupon] = useState(false);
   const [team, setteam] = useState(false);
+  const [Dashboard, setDashboard] = useState(false);
   const [selfService, setSelfService] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
@@ -54,6 +55,7 @@ function AddTeam() {
           Paymentkey: Paymentkey,
           Coupon: Coupon,
           team: team,
+          Dashboard: Dashboard,
         };
         const res = await postData(apiUrl.ADD_TEAMMEMBER, data);
         if (res) {
@@ -108,6 +110,31 @@ function AddTeam() {
             <div class="label-0-1-733">
               <div class="labelText-0-1-734">Permissions</div>
               <div className="row">
+                <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
+                  <div class="textSubText-0-1-183">
+                    <div class="toggleHeading-0-1-178 undefined">
+                      <div
+                        class="permissionIconTextWrap-0-1-172"
+                        style={{ fontSize: "15px" }}
+                      >
+                        <div class="textWrapper-0-1-176">
+                          <span>
+                            <div>Dashboard</div>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="medium-0-1-180">
+                    <div class="ui fitted toggle checkbox undefined ">
+                      <input
+                        type="checkbox"
+                        checked={Dashboard}
+                        onChange={(e) => setDashboard(!Dashboard)}
+                      />
+                    </div>
+                  </div>
+                </div>
                 <div class="toggleContainer-0-1-177 toggleBar-0-1-171 col-md-4 me-2">
                   <div class="textSubText-0-1-183">
                     <div class="toggleHeading-0-1-178 undefined">

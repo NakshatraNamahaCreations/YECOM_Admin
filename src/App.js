@@ -59,6 +59,7 @@ import AddContent from "./Component/Courses/AddContent";
 import Paymentkey from "./Component/Peoples/User/Paymentkey";
 import Userdetails from "./Component/Peoples/User/Userdetails";
 import Coupon from "./Component/Peoples/User/Coupon";
+import Homepage from "./Component/Peoples/User/Homepage";
 
 function App() {
   return (
@@ -476,6 +477,19 @@ function App() {
                 <>
                   <Header />
                   <Pricing />
+                </>
+              }
+            />
+          }
+        />
+
+  <Route
+          path="/Home-page"
+          element={
+            <Layout
+              Children={
+                <>
+                  <Homepage />
                 </>
               }
             />
